@@ -34,18 +34,18 @@ end
 
 # subscribing all users to the general channel
 
-users = User.all
-users.each do |user|
-  Membership.create!(user_id: user.id, )
-end
-
-10.times do
-  DirectMessage.create!()
-end
-
-100.times do
-
-end
+# users = User.all
+# users.each do |user|
+#   Membership.create!(user_id: user.id, )
+# end
+#
+# 10.times do
+#   DirectMessage.create!()
+# end
+#
+# 100.times do
+#
+# end
 
 Channel.create!(name: "Ruby")
 Channel.create!(name: "Star Wars")
