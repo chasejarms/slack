@@ -1,6 +1,7 @@
 ##SlackChat
 
 * [Trello Link](https://trello.com/b/mtN6Kiy4/slack-chat)
+* [Heroku Link](https://slack-chat-project.herokuapp.com/#/)
 
 
 ## MVP description:
