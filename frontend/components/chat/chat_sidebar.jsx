@@ -1,12 +1,12 @@
 import React from 'react';
-import ChatBanner from './chat_banner';
+import ChatBannerContainer from './chat_banner_container';
 import ChannelList from './channel_list';
 import DirectMessageList from './direct_message_list';
 
 const ChatSidebar = () => {
   return (
     <aside className="chat-sidebar">
-      <ChatBanner />
+      <ChatBannerContainer />
       <ChannelList />
       <DirectMessageList />
     </aside>

@@ -10,43 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310164541) do
+ActiveRecord::Schema.define(version: 20170310053527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "channels", force: :cascade do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name",       null: false
+    t.boolean  "channel",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "direct_messages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "memberships", force: :cascade do |t|
-    t.integer "user_id",        null: false
-    t.integer "messageable_id", null: false
+    t.index ["name"], name: "index_groups_on_name", unique: true, using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "user_id",        null: false
-    t.integer  "messageable_id", null: false
-    t.text     "body",           null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["messageable_id"], name: "index_messages_on_messageable_id", using: :btree
+    t.integer  "user_id",    null: false
+    t.integer  "group_id",   null: false
+    t.text     "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_messages_on_group_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "group_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_subscriptions_on_group_id", using: :btree
+    t.index ["user_id", "group_id"], name: "index_subscriptions_on_user_id_and_group_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "password_digest", null: false
+    t.string   "email",           null: false
     t.string   "session_token",   null: false
     t.string   "username",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end

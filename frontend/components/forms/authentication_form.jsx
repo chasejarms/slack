@@ -5,35 +5,33 @@ class AuthenticationForm extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      email: ""
     };
     this.authenticationHandler = this.authenticationHandler.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
     this.login = this._login.bind(this);
     this.signUp = this._signUp.bind(this);
-    this.clearFields = this._clearFields.bind(this);
   }
 
-  _clearFields() {
-    this.setState({
-      username: "",
-      password: ""
-    });
-  }
+
 
   _login() {
     this.props.login({
+      email: this.state.email,
       username: this.state.username,
       password: this.state.password
-    }).then(this.clearFields);
+    });
   }
 
   _signUp() {
     this.props.signUp({
+      email: this.state.email,
       username: this.state.username,
       password: this.state.password
-    }).then(this.clearFields);
+    });
   }
 
   authenticationHandler(e){
@@ -59,9 +57,16 @@ class AuthenticationForm extends React.Component {
     });
   }
 
+  handleEmail(e) {
+    e.preventDefault();
+    this.setState({
+      email: e.target.value
+    });
+  }
+
   render() {
     const { buttonValue, headerValue } = this.props;
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     const currentUser = this.props.currentUser ? this.props.currentUser.username : undefined;
     return(
       <div>
@@ -73,8 +78,16 @@ class AuthenticationForm extends React.Component {
             type="text"
             name="user[username]"
             onChange={this.handleUsername}
-            placeholder="you@example.com"
+            placeholder="hireMe"
             value={username}
+            />
+          <br/>
+          <input
+            type="text"
+            name="user[email]"
+            onChange={this.handleEmail}
+            placeholder="you@example.com"
+            value={email}
             />
           <br/>
           <input

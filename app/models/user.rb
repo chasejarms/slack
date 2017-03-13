@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   before_validation :ensure_session_token
 
-  validates :password_digest, :username, :session_token, presence: true
+  validates :password_digest, :username, :session_token, :email, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  validates :username, :session_token, uniqueness: true
+  validates :username, :session_token, :email, uniqueness: true
 
   attr_reader :password
 

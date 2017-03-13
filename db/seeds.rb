@@ -1,18 +1,4 @@
-=begin
-Faker::StarWars.character #=> "Anakin Skywalker"
-
-Faker::StarWars.droid #=> "C-3PO"
-
-Faker::StarWars.planet #=> "Tatooine"
-
-Faker::StarWars.quote #=> "Aren’t you a little short for a Stormtrooper?"
-
-Faker::StarWars.specie #=> "Gungan"
-
-Faker::StarWars.vehicle #=> "Sandcrawler"
-
-Faker::StarWars.wookie_sentence #=> "Yrroonn ru ooma roo ahuma ur roooarrgh hnn-rowr."
-=end
+# will use the following things later
 
 character = Proc.new { Faker::StarWars.character }
 droid = Proc.new { Faker::StarWars.droid }
@@ -22,32 +8,21 @@ specie = Proc.new { Faker::StarWars.specie }
 vehicle = Proc.new { Faker::StarWars.vehicle }
 wookie_sentence = Proc.new { Faker::StarWars.wookie_sentence }
 
-# creating a general channel to subscribe all users to
+# creating a few channels from the start
 
-Channel.create!(name: "General")
-general_id = Channel.find_by_name("General").id
+Group.create!(name: "General", channel: true)
+Group.create!(name: "Ruby", channel: true)
+Group.create!(name: "Star Wars", channel: true)
 
 50.times do
   username = Faker::Superhero.unique.name.split(" ").join("_")
-  User.create!(username: username, password: Faker::Internet.password(8) )
+  User.create!(
+    username: username,
+    password: Faker::Internet.password(8),
+    email: "#{username}@starwars.com"
+    )
 end
 
-# subscribing all users to the general channel
-
-# users = User.all
-# users.each do |user|
-#   Membership.create!(user_id: user.id, )
-# end
-#
-# 10.times do
-#   DirectMessage.create!()
-# end
-#
-# 100.times do
-#
-# end
-
-Channel.create!(name: "Ruby")
-Channel.create!(name: "Star Wars")
-
-User.create!(username: "chasejarms", password: "password")
+User.create!(username: "chasejarms", password: "password", email: "chase@hireme.com")
+User.create!(username: "guest_one", password: "guest_one", email: "guest_one@guest_one.com")
+User.create!(username: "guest_two", password: "guest_two", email: "guest_two@guest_two.com")

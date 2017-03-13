@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.logout = APIUtil.logout;
 
   let store;
-  if (window.current_user) {
+  if (window.currentUser) {
     const preloadedState = { session: { currentUser: window.currentUser } };
     store = configureStore(preloadedState);
   } else {
