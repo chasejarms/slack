@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310163533) do
+ActiveRecord::Schema.define(version: 20170310164541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,18 @@ ActiveRecord::Schema.define(version: 20170310163533) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id",        null: false
+    t.integer "messageable_id", null: false
+  end
+
   create_table "messages", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "group_id",   null: false
-    t.text     "body",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_messages_on_group_id", using: :btree
+    t.integer  "user_id",        null: false
+    t.integer  "messageable_id", null: false
+    t.text     "body",           null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["messageable_id"], name: "index_messages_on_messageable_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 

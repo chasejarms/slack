@@ -1,13 +1,9 @@
 import React from 'react';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        { this.props.children }
-      </div>
-    );
-  }
-}
+const App = ({ children }) => (
+  <main>
+    { children }
+  </main>
+);
 
 export default App;

@@ -1,29 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Root from './components/root';
+import configureStore from './store/store';
 
+// for testing only
 
-// components to import
-import App from './components/app';
-import Home from './components/home/home';
-import Chat from './components/chat/chat';
-
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
-
+import * as APIUtil from './util/api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const main = document.getElementById('main');
+  const root = document.getElementById('root');
 
+  // for testing only
+
+  window.signup = APIUtil.signup;
+  window.login = APIUtil.login;
+  window.logout = APIUtil.logout;
+
+  let store;
   if (window.current_user) {
     const preloadedState = { session: { currentUser: window.currentUser } };
-    // const store = configureStore(preloadedState);
+    store = configureStore(preloadedState);
   } else {
-    // const store = configureStore();
+    store = configureStore();
   }
 
-  ReactDOM.render(<Router history={ hashHistory }>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}></IndexRoute>
-      <Route path="chat" component={Chat}></Route>
-    </Route>
-  </Router>, main);
+  ReactDOM.render(<Root store={store}/>, root);
 });
