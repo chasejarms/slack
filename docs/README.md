@@ -1,3 +1,8 @@
+##SlackChat
+
+* [Trello Link](https://trello.com/b/mtN6Kiy4/slack-chat)
+
+
 ## MVP description:
 
 1. New account creation, login, and guest/demo login
