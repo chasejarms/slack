@@ -22,7 +22,7 @@ Feature 4: Teams or multi-person DM
 
 ## Design Docs
 * [View Wireframes](wireframes/)
-* [React Components](component-hierarchy.png)
+* [React Components](https://github.com/chasejarms/slack/blob/master/docs/component-heirarchy.png)
 * [API Endpoints](api-endpoints.md)
 * [DB Schema](schema.md)
 * [Sample State](sample-state.md)
