@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import Splash from './splash';
 
-const mapStateToProps = ({session}) => ({
-  currentUser: session.currentUser
+const mapStateToProps = ({session}, { pageType }) => ({
+  currentUser: session.currentUser,
+  pageType
 });
 
 const mapDispatchToProps = dispatch => ({

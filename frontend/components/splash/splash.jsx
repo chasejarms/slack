@@ -14,12 +14,10 @@ class Splash extends React.Component {
   }
 
   render() {
+    const correctForm = this.props.pageType === "signup" ? <SignUpForm /> : <LoginForm />;
     return(
       <div>
-        <button onClick={this.logout}>Logout</button>
-        <LoginForm />
-        <br/>
-        <SignUpForm />
+        { correctForm }
       </div>
     );
   }
