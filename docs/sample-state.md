@@ -41,14 +41,18 @@
     {
       id: 1,
       user_id: 2,
+      group_id: 3,
       user: "pikachu",
-      body: "This is a message"
+      body: "This is a message",
+      created_at: Mon, 13 Mar 2017 18:06:59 UTC +00:00
     },
     {
       id: 4,
       user_id: 5,
+      group_id: 3,
       user: "Han Solo",
-      body: "How did I get subscribed to this group?"
+      body: "How did I get subscribed to this group?",
+      created_at: Sun, 12 Mar 2017 13:06:53 UTC +00:00
     }
   ],
   currentMembers: [
