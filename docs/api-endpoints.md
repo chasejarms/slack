@@ -11,6 +11,7 @@
 ### Users
 
 - `POST /api/users` - creates a user (signup)
+- `GET /api/users` - get all the users for the current group
 
 ### Session
 
