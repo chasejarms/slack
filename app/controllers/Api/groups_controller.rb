@@ -6,7 +6,7 @@ class Api::GroupsController < ApplicationController
       @direct_messages = Group.subscribed_direct_messages(current_user.id).to_a
       render 'api/groups/index'
     else
-      render json: ["Please log in to see groups"], status: 401
+      render json: ["Please log in to see your groups"], status: 401
     end
   end
 
