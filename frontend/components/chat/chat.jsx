@@ -1,6 +1,6 @@
 import React from 'react';
-import ChatSidebarContainer from './chat_sidebar_container';
-import Messages from './messages';
+import ChatSidebarContainer from './chat-sidebar/chat_sidebar_container';
+import Messages from './main-messages/messages';
 
 const Chat = () => {
   return (
