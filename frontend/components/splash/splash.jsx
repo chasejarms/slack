@@ -36,8 +36,10 @@ class Splash extends React.Component {
     const correctForm = this.props.pageType === "signup" ? <SignUpForm /> : <LoginForm />;
     return(
       <div>
-        <button onClick={this.guestLogInOne}>Guest One Login</button>
-        <button onClick={this.guestLogInTwo}>Guest Two Login</button>
+        <header className="splash-header">
+          <button onClick={this.guestLogInOne}>Guest One Login</button>
+          <button onClick={this.guestLogInTwo}>Guest Two Login</button>
+        </header>
         { correctForm }
       </div>
     );

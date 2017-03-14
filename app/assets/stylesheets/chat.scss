@@ -1,0 +1,12 @@
+.chat-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.main-messages {
+  width: calc(100% - 200px);
+}
+
+.chat-sidebar {
+  width: 200px;
+}
