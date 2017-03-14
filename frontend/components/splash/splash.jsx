@@ -19,7 +19,7 @@ class Splash extends React.Component {
   guestLogInOne(e) {
     e.preventDefault();
     this.props.login({
-      username: "guest_one",
+      email: "guest_one@guest_one.com",
       password: "guest_one"
     });
   }
@@ -27,7 +27,7 @@ class Splash extends React.Component {
   guestLogInTwo(e) {
     e.preventDefault();
     this.props.login({
-      username: "guest_two",
+      email: "guest_two@guest_two.com",
       password: "guest_two"
     });
   }
@@ -36,8 +36,8 @@ class Splash extends React.Component {
     const correctForm = this.props.pageType === "signup" ? <SignUpForm /> : <LoginForm />;
     return(
       <div>
-        <button onClick={this.guestLogInOne}>Guest Login</button>
-        <button onClick={this.guestLogInTwo}>Guest Login</button>
+        <button onClick={this.guestLogInOne}>Guest One Login</button>
+        <button onClick={this.guestLogInTwo}>Guest Two Login</button>
         { correctForm }
       </div>
     );

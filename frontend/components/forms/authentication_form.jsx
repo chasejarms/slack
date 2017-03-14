@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router';
 class AuthenticationForm extends React.Component {
   constructor(props) {
     super(props);
@@ -12,11 +12,22 @@ class AuthenticationForm extends React.Component {
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
+    this.toggleUsernameInput = this._toggleUsernameInput.bind(this);
+    this.formatErrors = this._formatErrors.bind(this);
+    this.toggleLink = this._toggleLink.bind(this);
     this.login = this._login.bind(this);
     this.signUp = this._signUp.bind(this);
   }
 
-
+  _formatErrors() {
+    if (this.props.errors.length > 0) {
+      return (
+        <p>
+          { this.props.errors.map((err, idx) => <li key={idx}>{err}</li>) }
+        </p>
+      );
+    }
+  }
 
   _login() {
     this.props.login({
@@ -32,6 +43,41 @@ class AuthenticationForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     });
+  }
+
+  _toggleUsernameInput() {
+    const {username} = this.state;
+    if (this.props.actionType === "signup") {
+      return (
+        <input
+          type="text"
+          name="user[username]"
+          onChange={this.handleUsername}
+          placeholder="username"
+          value={username}
+          />
+      );
+    }
+  }
+
+  _toggleLink() {
+    if (this.props.actionType === "signup") {
+      return (
+        <div>
+          <p>
+            Already signed up? Log in <Link to="/login">here</Link>
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>
+            Not yet a member? Log in <Link to="/sign-up">here</Link>
+          </p>
+        </div>
+      );
+    }
   }
 
   authenticationHandler(e){
@@ -66,22 +112,19 @@ class AuthenticationForm extends React.Component {
 
   render() {
     const { buttonValue, headerValue } = this.props;
-    const { username, password, email } = this.state;
+    const { email, password } = this.state;
     const currentUser = this.props.currentUser ? this.props.currentUser.username : undefined;
+    const usernameInput = this.toggleUsernameInput();
+    const linkToggle = this.toggleLink();
+    const errors = this.formatErrors();
     return(
       <div>
-        <h3>{ currentUser }</h3>
         <h1>{headerValue}</h1>
         <p>Enter your <span>Email Address</span> and <span>Password</span></p>
+        { errors }
         <form>
-          <input
-            type="text"
-            name="user[username]"
-            onChange={this.handleUsername}
-            placeholder="hireMe"
-            value={username}
-            />
-          <br/>
+          { usernameInput }
+          { usernameInput ? <br /> : undefined }
           <input
             type="text"
             name="user[email]"
@@ -105,6 +148,7 @@ class AuthenticationForm extends React.Component {
             onClick={this.authenticationHandler}
             />
         </form>
+        { linkToggle }
       </div>
     );
   }

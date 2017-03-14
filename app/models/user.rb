@@ -7,10 +7,13 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many :memberships
+  has_many :subscriptions
+  has_many :groups,
+    through: :subscriptions,
+    source: :group
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by_email(email)
     return nil unless user
     user.is_password?(password) ? user : nil
   end

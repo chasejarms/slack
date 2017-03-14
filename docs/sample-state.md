@@ -37,6 +37,7 @@
       }
     ]
   },
+  subscribedGroups: [1,2,4,8,9,12],
   currentMessages: [
     {
       id: 1,

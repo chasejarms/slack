@@ -7,6 +7,7 @@ const mapStateToProps = ({session}, ownProps) => {
   const { headerValue, buttonValue, actionType} = ownProps;
   return {
     currentUser: session.currentUser,
+    errors: session.errors,
     headerValue,
     buttonValue,
     actionType

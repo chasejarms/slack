@@ -14,6 +14,17 @@ Group.create!(name: "General", channel: true)
 Group.create!(name: "Ruby", channel: true)
 Group.create!(name: "Star Wars", channel: true)
 
+# creating a few direct messages from the start
+
+Group.create!(name: "LeoSalat", channel: false)
+Group.create!(name: "JesseFurukawa", channel: false)
+
+general_id = Group.find_by_name("General").id
+ruby_id = Group.find_by_name("Ruby").id
+star_wars_id = Group.find_by_name("Star Wars").id
+leo_salat_id = Group.find_by_name("LeoSalat").id
+jesse_furukawa_id = Group.find_by_name("JesseFurukawa").id
+
 50.times do
   username = Faker::Superhero.unique.name.split(" ").join("_")
   User.create!(
@@ -21,8 +32,18 @@ Group.create!(name: "Star Wars", channel: true)
     password: Faker::Internet.password(8),
     email: "#{username}@starwars.com"
     )
+  Subscription.create!(user_id: User.last.id, group_id: general_id)
 end
 
-User.create!(username: "chasejarms", password: "password", email: "chase@hireme.com")
+User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
+Subscription.create!(user_id: User.last.id, group_id: general_id)
+Subscription.create!(user_id: User.last.id, group_id: ruby_id)
+Subscription.create!(user_id: User.last.id, group_id: star_wars_id)
+Subscription.create!(user_id: User.last.id, group_id: leo_salat_id)
+Subscription.create!(user_id: User.last.id, group_id: jesse_furukawa_id)
+
 User.create!(username: "guest_one", password: "guest_one", email: "guest_one@guest_one.com")
+Subscription.create!(user_id: User.last.id, group_id: general_id)
+
 User.create!(username: "guest_two", password: "guest_two", email: "guest_two@guest_two.com")
+Subscription.create!(user_id: User.last.id, group_id: general_id)

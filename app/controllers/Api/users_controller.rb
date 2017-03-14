@@ -2,6 +2,9 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      group = Group.find_by_name("General");
+      subscription = Subscription.new(user_id: @user.id, group_id: group.id)
+      subscription.save
       login(@user)
       render 'api/users/show'
     else
