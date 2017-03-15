@@ -13,7 +13,7 @@ class User < ApplicationRecord
     source: :group
 
   def self.find_by_credentials(email, password)
-    user = User.find_by_email(email)
+    user = self.find_by_email(email)
     return nil unless user
     user.is_password?(password) ? user : nil
   end
