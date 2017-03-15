@@ -15,6 +15,7 @@ class AuthenticationForm extends React.Component {
     this.toggleUsernameInput = this._toggleUsernameInput.bind(this);
     this.formatErrors = this._formatErrors.bind(this);
     this.toggleLink = this._toggleLink.bind(this);
+    this.clearErrors = this._clearErrors.bind(this);
     this.login = this._login.bind(this);
     this.signUp = this._signUp.bind(this);
   }
@@ -63,12 +64,16 @@ class AuthenticationForm extends React.Component {
     }
   }
 
+  _clearErrors() {
+    this.props.clearErrors();
+  }
+
   _toggleLink() {
     if (this.props.actionType === "signup") {
       return (
         <div>
           <p>
-            Already signed up? Log in <Link to="/login">here</Link>
+            Already signed up? Log in <Link to="/login" onClick={this.clearErrors}>here</Link>
           </p>
         </div>
       );
@@ -76,7 +81,7 @@ class AuthenticationForm extends React.Component {
       return (
         <div>
           <p>
-            Not yet a member? Sign up <Link to="/sign-up">here</Link>
+            Not yet a member? Sign up <Link to="/sign-up" onClick={this.clearErrors}>here</Link>
           </p>
         </div>
       );

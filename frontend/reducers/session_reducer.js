@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/session_actions';
 
 const _nullUser = {
   currentUser: null,
@@ -11,14 +11,14 @@ const SessionReducer = (state = _nullUser, action) => {
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       const currentUser = action.currentUser;
-
-      // does the currentUser inside of the {} need to change
-      // here? What does this look like whne we pass it in?
-
-      return merge({}, _nullUser, {currentUser});
+      return merge({}, state, {currentUser});
     case RECEIVE_ERRORS:
       const errors = action.errors;
-      return merge({}, _nullUser, {errors});
+      return merge({}, state, {errors});
+    case CLEAR_ERRORS:
+      let newState = merge({}, state );
+      newState.errors = [];
+      return newState;
     default:
       return state;
   }
