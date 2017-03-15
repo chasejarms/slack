@@ -8,19 +8,27 @@ class ChatSidebar extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.requestGroups();
-  }
-
   render(){
-    const { channels, directMessages } = this.props;
-    return (
-      <aside className="chat-sidebar">
-        <ChatBannerContainer />
-        <ChannelList channels={ channels }/>
-        <DirectMessageList directMessages={ directMessages }/>
-      </aside>
-    );
+    const { channels, directMessages, subscribedGroups } = this.props;
+    if (channels.length > 0) {
+      return (
+        <aside className="chat-sidebar">
+          <ChatBannerContainer />
+          <ChannelList
+            channels={ channels }
+            subscribedGroups={ subscribedGroups }
+            />
+          <DirectMessageList
+            directMessages={ directMessages }
+            subscribedGroups={ subscribedGroups }
+            />
+        </aside>
+      );
+    } else {
+      return(
+        <div>Waiting on the world to change</div>
+      );
+    }
   }
 }
 export default ChatSidebar;

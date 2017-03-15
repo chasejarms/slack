@@ -2,13 +2,31 @@ import React from 'react';
 import ChatSidebarContainer from './chat-sidebar/chat_sidebar_container';
 import Messages from './main-messages/messages';
 
-const Chat = () => {
-  return (
-    <div className="chat-container">
-      <ChatSidebarContainer />
-      <Messages />
-    </div>
-  );
-};
+class Chat extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.requestGroups();
+    this.props.requestSubscribedGroups();
+  }
+
+  render() {
+    const { channels } = this.props;
+    if (channels.length > 0) {
+      return (
+        <div className="chat-container">
+          <ChatSidebarContainer />
+          <Messages />
+        </div>
+      );
+    } else {
+      return(
+        <div>Not yet loaded</div>
+      );
+    }
+  }
+}
 
 export default Chat;
