@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import ChatSidebar from './chat_sidebar';
 import { requestGroups } from '../../../actions/groups_actions';
 
-const mapStateToProps = ({ groups: { channels, directMessages} }) => ({
+const mapStateToProps = ({ groups: { channels, directMessages}, subscribedGroups }) => ({
   channels,
+  subscribedGroups,
   directMessages
 });
 

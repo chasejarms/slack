@@ -27,3 +27,10 @@ export const requestGroups = () => {
     url: 'api/groups/'
   });
 };
+
+export const requestSubscribedGroups = () => {
+  return $.ajax({
+    method: "GET",
+    url: 'api/subscriptions'
+  });
+};

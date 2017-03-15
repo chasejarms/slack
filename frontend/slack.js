@@ -6,14 +6,14 @@ import configureStore from './store/store';
 // for testing only
 
 import * as APIUtil from './util/api_util';
-import { requestGroups } from './actions/groups_actions';
+import { requestSubscribedGroups } from './actions/subscription_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
   // for testing only
 
-  window.requestGroups = requestGroups;
+  window.requestSubscribedGroups = requestSubscribedGroups;
 
   let store;
   if (window.currentUser) {
