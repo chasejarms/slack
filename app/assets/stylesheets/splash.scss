@@ -58,9 +58,10 @@ input[type="submit"]:hover {
 .login-signup {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 70px;
+  align-items: center;
   background-color: $lightest-grey;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 70px);
 }
 
 .authentication-form-container {
@@ -68,9 +69,7 @@ input[type="submit"]:hover {
   box-shadow: 0 1px 0 rgba(0, 0, 0, .25);
   border: 1px solid $light-grey;
   width: 630px;
-  height: 430px;
-  position: relative;
-  top: 150px;
+  height: 440px;
   border-radius: 3px;
   text-align: center;
 }
@@ -91,4 +90,13 @@ input[type="submit"]:hover {
   color: $red;
   position: relative;
   top: -10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.medium-logo {
+  background: image-url("slack.svg") left center / auto 30px no-repeat;
+  height: 70px;
+  width: 100px;
+  margin-left: 17px;
 }
