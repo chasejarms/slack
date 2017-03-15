@@ -1,17 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router';
+import GroupItem from './group_item';
 
-const DirectMessageList = () => (
-  <section>
-    <h5>DIRECT MESSAGES</h5>
-    <ul>
-      <li>chase_armstrong (you)</li>
-      <li>ayyjohn</li>
-      <li>codeislyfe_imjesse</li>
-      <li>dallashall</li>
-      <li>harvey93</li>
-      <li>thebigl</li>
-    </ul>
-  </section>
-);
+const DirectMessageList = ({ directMessages, subscribedGroups }) => {
+
+  let formattedGroups = directMessages.map(message => {
+    let name = message.name.length > 10 ? message.name.slice(0,10) : message.name;
+    return <GroupItem groupInfo={ message } name={ name } key={ message.id}/>;
+  });
+
+  return (
+    <section>
+      <h5>DIRECT MESSAGES</h5>
+      <ul>
+        { formattedGroups }
+      </ul>
+    </section>
+  );
+};
 
 export default DirectMessageList;
