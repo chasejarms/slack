@@ -22,9 +22,11 @@ class AuthenticationForm extends React.Component {
   _formatErrors() {
     if (this.props.errors.length > 0) {
       return (
-        <p>
-          { this.props.errors.map((err, idx) => <li key={idx}>{err}</li>) }
-        </p>
+        <div className="authentication-errors-container">
+          <div className="authentication-errors medium-margin-bottom">
+            <p>{ this.props.errors.join(" - ")}</p>
+          </div>
+        </div>
       );
     }
   }
