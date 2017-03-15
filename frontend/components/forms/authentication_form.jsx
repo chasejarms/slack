@@ -50,6 +50,7 @@ class AuthenticationForm extends React.Component {
     if (this.props.actionType === "signup") {
       return (
         <input
+          className="small-margin-bottom"
           type="text"
           name="user[username]"
           onChange={this.handleUsername}
@@ -73,7 +74,7 @@ class AuthenticationForm extends React.Component {
       return (
         <div>
           <p>
-            Not yet a member? Log in <Link to="/sign-up">here</Link>
+            Not yet a member? Sign up <Link to="/sign-up">here</Link>
           </p>
         </div>
       );
@@ -118,14 +119,15 @@ class AuthenticationForm extends React.Component {
     const linkToggle = this.toggleLink();
     const errors = this.formatErrors();
     return(
-      <div>
-        <h1>{headerValue}</h1>
-        <p>Enter your <span>Email Address</span> and <span>Password</span></p>
+      <div className="authentication-form-container">
+        <h1 className="large-margin-bottom">{headerValue}</h1>
+        <p className="large-margin-bottom">Enter your <strong>Email Address</strong> and <strong>Password</strong></p>
         { errors }
         <form>
           { usernameInput }
           { usernameInput ? <br /> : undefined }
           <input
+            className="small-margin-bottom"
             type="text"
             name="user[email]"
             onChange={this.handleEmail}
@@ -134,6 +136,7 @@ class AuthenticationForm extends React.Component {
             />
           <br/>
           <input
+            className="medium-margin-bottom"
             id="Password"
             type="text"
             name="user[password]"
@@ -146,6 +149,7 @@ class AuthenticationForm extends React.Component {
             type="submit"
             value={buttonValue}
             onClick={this.authenticationHandler}
+            className="medium-margin-bottom"
             />
         </form>
         { linkToggle }

@@ -1,0 +1,88 @@
+input {
+  width: 375px;
+  height: 50px;
+  border: 1px solid $sharp-grey;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+input[type="text"] {
+  padding-left: 15px;
+}
+
+input[type="text"]:hover, input[type="text"]:focus {
+  border-color: $blue;
+}
+
+input[type="submit"] {
+  width: 390px;
+  font-weight: 700;
+  color: $pure-white;
+  border: none;
+  background-color: $green;
+}
+
+input[type="submit"]:hover {
+  box-shadow: inset 0px -2px $darker-green;
+  cursor: pointer;
+}
+
+.splash-header {
+  width: 100%;
+  position: fixed;
+  height: 70px;
+  z-index: 1000;
+  top: 0px;
+  background-color: $pure-white;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  align-items: center;
+}
+
+.splash-header-button {
+  margin-left: 17px;
+}
+
+.splash-header-button:last-child {
+  margin-right: 17px
+}
+
+.splash-header-button:hover {
+  color: $darker-grey;
+  border-color: $darker-grey;
+  transition: all 0s ease-in-out;
+}
+
+.login-signup {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  background-color: $lightest-grey;
+  height: calc(100vh - 100px);
+}
+
+.authentication-form-container {
+  background-color: $pure-white;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+  border: 1px solid $light-grey;
+  width: 630px;
+  height: 430px;
+  position: relative;
+  top: 150px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.authentication-form-container:first-child  {
+  padding-top: 32px;
+}
+.authentication-form-container:last-child {
+  padding-bottom: 32px;
+}
+
+.authentication-form-container {
+  padding-left: 16px;
+  padding-right: 16px;
+}

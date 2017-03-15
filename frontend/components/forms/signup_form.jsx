@@ -3,7 +3,7 @@ import AuthenticationFormContainer from './authentication_form_container';
 
 const SignUpForm = () => (
   <AuthenticationFormContainer
-    headerValue={"Sign Up For Slack Channel"}
+    headerValue={"Sign Up For Slack"}
     buttonValue={"Sign Up"}
     actionType={"signup"}
     />

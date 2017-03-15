@@ -37,10 +37,15 @@ class Splash extends React.Component {
     return(
       <div>
         <header className="splash-header">
-          <button onClick={this.guestLogInOne}>Guest One Login</button>
-          <button onClick={this.guestLogInTwo}>Guest Two Login</button>
+          <p>Logo will go here</p>
+          <section>
+            <button className="splash-header-button" onClick={this.guestLogInOne}>Guest One Login</button>
+            <button className="splash-header-button" onClick={this.guestLogInTwo}>Guest Two Login</button>
+          </section>
         </header>
-        { correctForm }
+        <section className="login-signup">
+          { correctForm }
+        </section>
       </div>
     );
   }
