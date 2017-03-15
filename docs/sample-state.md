@@ -35,9 +35,9 @@
         id: 12,
         name: "Kirby"
       }
-    ],
-    subscribedGroups: [1,2,4,8,9,12]
+    ]
   },
+  subscribedGroups: [1,4,2,7,29],
   currentMessages: [
     {
       id: 1,
