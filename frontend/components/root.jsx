@@ -4,7 +4,7 @@ import SplashLogIn from './splash/splash_log_in';
 import SplashSignUp from './splash/splash_sign_up';
 import Chat from './chat/chat';
 
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 
 
@@ -28,6 +28,7 @@ const Root = ({store}) => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
+          <IndexRedirect to="login"/>
           <Route path="login" component={SplashLogIn} onEnter={_redirectIfLoggedIn}/>
           <Route path="sign-up" component={SplashSignUp} onEnter={_redirectIfLoggedIn}/>
           <Route path="chat" component={Chat} onEnter={_checkLoggedIn}/>
