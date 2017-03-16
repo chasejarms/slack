@@ -15,7 +15,7 @@ const ChannelList = ({ channels, subscribedGroups }) => {
 
   return (
     <section>
-      <h5>Channels ({channelCount})</h5>
+      <h5>CHANNELS ({channelCount})</h5>
       <ul>
         { formattedChannels }
       </ul>

@@ -5,9 +5,11 @@ import { logout } from '../../../actions/session_actions';
 
 const mapStateToProps = ({ session }) => {
   const username = session.currentUser ? session.currentUser.username : undefined;
+  const email = session.currentUser ? session.currentUser.email : undefined;
   return ({
     loggedIn: Boolean(session.currentUser),
-    username: username
+    username,
+    email
   });
 };
 
