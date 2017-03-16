@@ -1,12 +1,12 @@
 # will use the following things later
 
-character = Proc.new { Faker::StarWars.character }
-droid = Proc.new { Faker::StarWars.droid }
-planet = Proc.new { Faker::StarWars.planet }
-quote = Proc.new { Faker::StarWars.quote }
-specie = Proc.new { Faker::StarWars.specie }
-vehicle = Proc.new { Faker::StarWars.vehicle }
-wookie_sentence = Proc.new { Faker::StarWars.wookie_sentence }
+character = Proc.new { Faker::StarWars.unique.character }
+droid = Proc.new { Faker::StarWars.unique.droid }
+planet = Proc.new { Faker::StarWars.unique.planet }
+quote = Proc.new { Faker::StarWars.unique.quote }
+specie = Proc.new { Faker::StarWars.unique.specie }
+vehicle = Proc.new { Faker::StarWars.unique.vehicle }
+wookie_sentence = Proc.new { Faker::StarWars.unique.wookie_sentence }
 
 # creating a few channels from the start
 
@@ -25,6 +25,14 @@ star_wars_id = Group.find_by_name("Star Wars").id
 leo_salat_id = Group.find_by_name("LeoSalat").id
 jesse_furukawa_id = Group.find_by_name("JesseFurukawa").id
 
+User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
+
+Subscription.create!(user_id: User.last.id, group_id: general_id)
+Subscription.create!(user_id: User.last.id, group_id: ruby_id)
+Subscription.create!(user_id: User.last.id, group_id: star_wars_id)
+Subscription.create!(user_id: User.last.id, group_id: leo_salat_id)
+Subscription.create!(user_id: User.last.id, group_id: jesse_furukawa_id)
+
 50.times do
   username = Faker::Superhero.unique.name.split(" ").join("_")
   User.create!(
@@ -35,12 +43,14 @@ jesse_furukawa_id = Group.find_by_name("JesseFurukawa").id
   Subscription.create!(user_id: User.last.id, group_id: general_id)
 end
 
-User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
-Subscription.create!(user_id: User.last.id, group_id: general_id)
-Subscription.create!(user_id: User.last.id, group_id: ruby_id)
-Subscription.create!(user_id: User.last.id, group_id: star_wars_id)
-Subscription.create!(user_id: User.last.id, group_id: leo_salat_id)
-Subscription.create!(user_id: User.last.id, group_id: jesse_furukawa_id)
+50.times do
+  Message.create!(
+    user_id: rand(50) + 1,
+    group_id: rand(5) + 1,
+    body: wookie_sentence.call()
+  )
+end
+
 
 User.create!(username: "guest_one", password: "guest_one", email: "guest_one@guest_one.com")
 Subscription.create!(user_id: User.last.id, group_id: general_id)

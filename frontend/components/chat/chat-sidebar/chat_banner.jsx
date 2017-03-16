@@ -18,10 +18,11 @@ class ChatBanner extends React.Component {
   }
 
   render() {
+    const { username } = this.props;
     return(
-      <section>
-        <h3>App Academy</h3>
-        <p>Chase Armstrong</p>
+      <section className="chat-banner">
+        <h3>Slack</h3>
+        <p>{ username }</p>
         <button onClick={this.logout}>Logout</button>
       </section>
     );

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :groups,
     through: :subscriptions,
     source: :group
+  has_many :messages
 
   def self.find_by_credentials(email, password)
     user = self.find_by_email(email)

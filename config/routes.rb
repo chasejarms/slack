@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :groups, only: [:index, :create]
     resources :subscriptions, only: [:index]
+    resources :messages, only: [:index]
   end
 end

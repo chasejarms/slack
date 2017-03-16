@@ -10,6 +10,7 @@ class Chat extends React.Component {
   componentWillMount() {
     this.props.requestGroups();
     this.props.requestSubscribedGroups();
+    this.props.requestMessages(this.props.params.groupName);
   }
 
   render() {

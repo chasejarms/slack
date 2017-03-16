@@ -31,7 +31,10 @@ const Root = ({store}) => {
           <IndexRedirect to="login"/>
           <Route path="login" component={SplashLogIn} onEnter={_redirectIfLoggedIn}/>
           <Route path="sign-up" component={SplashSignUp} onEnter={_redirectIfLoggedIn}/>
-          <Route path="chat" component={ChatContainer} onEnter={_checkLoggedIn}/>
+          <Route path="chat" component={ChatContainer} onEnter={_checkLoggedIn}>
+            <IndexRedirect to="General"/>
+            <Route path=":groupName"></Route>
+          </Route>
         </Route>
       </Router>
     </Provider>

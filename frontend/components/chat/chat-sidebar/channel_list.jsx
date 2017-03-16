@@ -10,7 +10,7 @@ const ChannelList = ({ channels, subscribedGroups }) => {
   }).map(channel => <GroupItem
     groupInfo={ channel }
     key={ channel.id }
-    name={ channel.name.length > 10 ? channel.name.slice(0,10) : channel.name }
+    name={ channel.name.length > 10 ? `${channel.name.slice(0,10)}...` : channel.name }
     />);
 
   return (

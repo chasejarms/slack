@@ -21,7 +21,7 @@ class AuthenticationForm extends React.Component {
   }
 
   _formatErrors() {
-    
+
     if (this.props.errors.length > 0) {
       return (
         <div className="authentication-errors-container">
@@ -146,7 +146,7 @@ class AuthenticationForm extends React.Component {
           <input
             className="medium-margin-bottom"
             id="Password"
-            type="text"
+            type="password"
             name="user[password]"
             onChange={this.handlePassword}
             placeholder="password"

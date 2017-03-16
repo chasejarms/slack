@@ -6,14 +6,14 @@ import configureStore from './store/store';
 // for testing only
 
 import * as APIUtil from './util/api_util';
-import { requestSubscribedGroups } from './actions/subscription_actions';
+import { fetchMessages } from './actions/message_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
   // for testing only
 
-  window.requestSubscribedGroups = requestSubscribedGroups;
+  window.fetchMessages = fetchMessages;
 
   let store;
   if (window.currentUser) {

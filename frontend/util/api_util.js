@@ -34,3 +34,11 @@ export const requestSubscribedGroups = () => {
     url: 'api/subscriptions'
   });
 };
+
+export const requestMessages = groupName => {
+  return $.ajax({
+    method: "GET",
+    url: 'api/messages',
+    data: { groupName }
+  });
+};
