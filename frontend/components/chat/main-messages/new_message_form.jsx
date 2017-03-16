@@ -7,6 +7,8 @@ class NewMessageForm extends React.Component {
     this.state = {
       new_message: ""
     };
+    this.handleNewMessageInput = this.handleNewMessageInput.bind(this);
+    this.handleNewMessage = this.handleNewMessage.bind(this);
   }
 
   handleNewMessageInput(e) {
@@ -16,10 +18,26 @@ class NewMessageForm extends React.Component {
     });
   }
 
+  handleNewMessage(e) {
+    e.preventDefault();
+    this.props.createMessage({
+      body: this.state.new_message,
+      group_id: this.props.firstMessage.group_id
+    }).then(() => this.props.scrollToBottom());
+    this.setState({
+      new_message: ""
+    });
+  }
+
   render() {
     return(
       <div className="new-message-form-container">
         <form className="new-message-form">
+          <input
+            type="submit"
+            onClick={this.handleNewMessage}
+            value="+"
+            />
           <input
             type="text"
             value={this.state.new_message}

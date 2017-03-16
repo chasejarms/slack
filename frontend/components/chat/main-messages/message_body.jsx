@@ -1,7 +1,7 @@
 import React from 'react';
 import IndividualMessage from './individual_message';
 import { withRouter } from 'react-router';
-import NewMessageForm from './new_message_form';
+import NewMessageFormContainer from './new_message_form_container';
 import ReactDOM from 'react-dom';
 
 class MessageBody extends React.Component {
@@ -54,7 +54,7 @@ class MessageBody extends React.Component {
           className="scroll-anchor"
           ref={(el) => { this.messagesEnd = el; }}>
         </div>
-        <NewMessageForm />
+        <NewMessageFormContainer scrollToBottom={this.scrollToBottom}/>
       </section>
     );
   }
