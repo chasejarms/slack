@@ -1,12 +1,33 @@
 .chat-container {
   display: flex;
   justify-content: flex-start;
+  height: 100vh;
 }
 
 .main-messages {
-  width: calc(100% - 200px);
+  width: calc(100% - 225px);
+  height: 100vh;
+  overflow: scroll;
 }
 
 .chat-sidebar {
-  width: 200px;
+  width: 225px;
+  background-color: $slack-sidebar;
+}
+.chat-sidebar h5, .chat-sidebar p, .chat-sidebar li {
+  color: $slack-sidebar-font;
+}
+
+.chat-sidebar h3 {
+  color: $pure-white;
+}
+
+.chat-container li, .chat-container h3, .chat-container p, .chat-container button {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+.chat-banner:first-child {
+  margin-top: 15px;
 }

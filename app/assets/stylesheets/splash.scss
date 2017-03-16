@@ -7,11 +7,11 @@ input {
   font-weight: 300;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   padding-left: 15px;
 }
 
-input[type="text"]:hover, input[type="text"]:focus {
+input[type="text"]:hover, input[type="text"]:focus, input[type="password"] {
   border-color: $blue;
 }
 
@@ -23,7 +23,7 @@ input[type="submit"] {
   background-color: $green;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, input[type="submit"]:focus {
   box-shadow: inset 0px -2px $darker-green;
   cursor: pointer;
 }
@@ -46,7 +46,7 @@ input[type="submit"]:hover {
 }
 
 .splash-header-button:last-child {
-  margin-right: 17px
+  margin-right: 17px;
 }
 
 .splash-header-button:hover {
