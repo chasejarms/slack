@@ -1,0 +1,20 @@
+// message banner styling
+
+.message-banner {
+  height: 60px;
+  border-bottom: 1px solid $light-grey;
+  width: 100%;
+}
+
+.new-message-form {
+  position: absolute;
+  bottom: 0px;
+  width: calc(100vw - 201.41px);
+  background-color: $pure-white;
+  padding-bottom: 30px;
+}
+
+.new-message-form input {
+  width: calc(100vw - 201.41px - 75px);
+  margin-left: 30px;
+}

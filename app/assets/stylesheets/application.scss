@@ -29,6 +29,14 @@ div, section, ul, li, html, body, main, h1, h2, h3, h4, h5, h6, p, button, form,
   color: $darker-grey;
 }
 
+body {
+  overflow-y: hidden;
+}
+
+div {
+  width: 100%;
+}
+
 textarea, input, button {
   outline: none;
 }
@@ -73,3 +81,4 @@ button:hover {
 @import "reusable_styles";
 @import "splash";
 @import "chat";
+@import "messages";

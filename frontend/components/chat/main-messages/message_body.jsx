@@ -44,7 +44,7 @@ class MessageBody extends React.Component {
   render() {
     const { currentMessages } = this.props;
     return(
-      <section>
+      <section className="message-body-container">
         { currentMessages.map(messageInfo => <IndividualMessage
           messageInfo={messageInfo}
           key={messageInfo.id}

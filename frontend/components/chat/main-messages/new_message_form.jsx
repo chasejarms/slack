@@ -18,13 +18,15 @@ class NewMessageForm extends React.Component {
 
   render() {
     return(
-      <form>
-        <input
-          type="text"
-          value={this.state.new_message}
-          onChange={this.handleNewMessageInput}
-          />
-      </form>
+      <div className="new-message-form-container">
+        <form className="new-message-form">
+          <input
+            type="text"
+            value={this.state.new_message}
+            onChange={this.handleNewMessageInput}
+            />
+        </form>
+      </div>
     );
   }
 
