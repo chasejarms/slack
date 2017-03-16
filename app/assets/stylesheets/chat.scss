@@ -22,12 +22,121 @@
   color: $pure-white;
 }
 
-.chat-container li, .chat-container h3, .chat-container p, .chat-container button {
+.chat-container li, .chat-container h3, .chat-container h5, .chat-container p, .chat-container button {
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 10px;
 }
+.chat-container h5 {
+  padding-top: 10px;
+}
+
+.chat-container h3 {
+  padding-bottom: 0px;
+}
 
 .chat-banner:first-child {
-  margin-top: 15px;
+  padding-top: 15px;
+}
+
+.chat-sidebar li:hover, .chat-banner:hover {
+  background-color: $slack-sidebar-hover;
+  cursor: pointer;
+}
+
+.chat-banner h3:hover, .chat-banner:hover p, .chat-banner:hover span {
+  color: white;
+}
+
+.chat-header-container {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.chat-header-container .fa-chevron-down {
+  color: $slack-sidebar-font;
+  position: relative;
+  top: 6px;
+  font-size: 10px;
+  left: -13px;
+}
+
+.chat-nav.chat-nav-hidden {
+  visibility: hidden;
+}
+
+.chat-nav.chat-nav-visible {
+  visibility: visible;
+}
+
+.chat-nav {
+  position: absolute;
+  left: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid $light-grey;
+  border-radius: 4px;
+}
+
+p.chat-banner-username {
+  padding-bottom: 23px;
+  font-size: 15px;
+}
+
+.chat-nav-list {
+  padding: 20px;
+  list-style-type: none;
+  font-size: 17px;
+  color: black;
+  cursor: default;
+}
+
+.chat-nav-list li:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+.chat-nav-list li {
+  color: black;
+  padding-bottom: 10px;
+  cursor: default;
+}
+
+.chat-nav-list li:last-child {
+  color: white;
+  padding-top: 10px;
+  border-radius: 4px;
+  background-color: $blue;
+}
+
+.chat-nav-list li:last-child:hover {
+  box-shadow: inset 0px -2px $darker-blue;
+  cursor: pointer;
+}
+
+.chat-banner:focus {
+  outline: none;
+}
+
+
+// styling for the group items
+
+.group-item li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+a.group-item {
+  color: transparent;
+}
+
+.group-item li:hover {
+  text-decoration: none;
+}
+
+// anchor for scrolling
+
+.scroll-anchor {
+  float: left;
+  clear: both;
 }
