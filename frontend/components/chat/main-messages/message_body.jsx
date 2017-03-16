@@ -1,11 +1,32 @@
 import React from 'react';
+import IndividualMessage from './individual_message';
+import { withRouter } from 'react-router';
+import NewMessageForm from './new_message_form';
 
-const MessageBody = () => (
-  <section>
-    <li>A message right here</li>
-    <li>Another message after that</li>
-    <li>A final message after that message</li>
-  </section>
-);
+class MessageBody extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default MessageBody;
+  componentWillReceiveProps(nextState) {
+    if (this.props.params.groupName !== nextState.params.groupName) {
+      this.props.fetchMessages(nextState.params.groupName);
+    }
+  }
+
+  render() {
+    const { currentMessages } = this.props;
+    return(
+      <section>
+        { currentMessages.map(messageInfo => <IndividualMessage
+          messageInfo={messageInfo}
+          key={messageInfo.id}
+          />)
+        }
+        <NewMessageForm />
+      </section>
+    );
+  }
+}
+
+export default withRouter(MessageBody);
