@@ -6,15 +6,96 @@
   width: 100%;
 }
 
+// individual message styling
+
+.individual-message-container {
+  list-style-type: none;
+  margin-left: 30px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.individual-message-first-line {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.individual-message-username {
+  color: $darkest-grey;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.individual-message-body {
+  font-weight: 400;
+  color: $darkest-grey;
+  font-size: 15px;
+}
+
+.individual-message-date {
+  color: $sharp-grey;
+  font-weight: 300;
+  left: -10px;
+  top: 2px;
+  position: relative;
+}
+
+// message form styling
+
 .new-message-form {
   position: absolute;
   bottom: 0px;
-  width: calc(100vw - 201.41px);
+  width: calc(100vw - 220px);
   background-color: $pure-white;
   padding-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .new-message-form input {
-  width: calc(100vw - 201.41px - 75px);
-  margin-left: 30px;
+  width: calc(100vw - 201.41px - 75px - 52px);
 }
+
+.new-message-form input[type="submit"] {
+  margin-left: 30px;
+  width: 50px;
+  border: 2px solid $sharp-grey;
+  color: $sharp-grey;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 30px;
+  background-color: transparent;
+}
+
+.new-message-form input[type="submit"]:hover, .new-message-form input[type="submit"]:focus {
+  background-color: $green;
+  color: white;
+  border-color: $green;
+  box-shadow: none;
+}
+
+.new-message-form input[type="text"] {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: none;
+  border-width: 2px;
+}
+
+.new-message-form input[type="text"]:hover, .new-message-form input[type="text"]:focus {
+  border-color: $sharp-grey;
+}
+
+
+// other
+
+.message-body-container {
+  margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+//
