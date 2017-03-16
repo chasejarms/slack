@@ -42,3 +42,11 @@ export const requestMessages = groupName => {
     data: { groupName }
   });
 };
+
+export const requestMessageCreation = message => {
+  return $.ajax({
+    method: "POST",
+    url: 'api/messages',
+    data: { message }
+  });
+};
