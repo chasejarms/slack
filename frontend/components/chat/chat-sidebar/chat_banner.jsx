@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import ChatBannerDropdown from './chat-banner-dropdown';
 
 class ChatBanner extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class ChatBanner extends React.Component {
       downDownVisible: false
     };
     this.toggleDropDown = this.toggleDropDown.bind(this);
+    this.closeDropDown = this.closeDropDown.bind(this);
   }
 
   logout() {
@@ -22,11 +24,15 @@ class ChatBanner extends React.Component {
   }
 
   toggleDropDown(e) {
-    let clickedDropdown = e.target.className === "chat-nav-list" ||
-      e.target.className === "chat-nav-list-li";
-    if (!(clickedDropdown && this.state.dropDownVisible)) {
+    this.setState({
+      dropDownVisible: !this.state.dropDownVisible
+    });
+  }
+
+  closeDropDown(e) {
+    if (this.state.dropDownVisible) {
       this.setState({
-        dropDownVisible: !this.state.dropDownVisible
+        dropDownVisible: false
       });
     }
   }
@@ -35,19 +41,17 @@ class ChatBanner extends React.Component {
     const { username, email } = this.props;
     const dropDownClass = this.state.dropDownVisible ? "chat-nav-visible" : "chat-nav-hidden";
     return(
-      <section className="chat-banner" onClick={this.toggleDropDown} tabIndex="0" onBlur={this.toggleDropDown}>
+      <section className="chat-banner" onClick={this.toggleDropDown}>
         <div className="chat-header-container">
           <h3>Slack</h3>
           <span className="fa fa-chevron-down"></span>
         </div>
         <p className="chat-banner-username">{ username }</p>
-        <section className={`chat-nav ${dropDownClass}`}>
-          <ul className="chat-nav-list">
-            <li className="chat-nav-list-li">Email: { email }</li>
-            <li className="chat-nav-list-li">Username: { username }</li>
-            <li onClick={this.logout}>Sign Out Of Slack</li>
-          </ul>
-        </section>
+        <ChatBannerDropdown
+          username={username}
+          email={email}
+          dropDownClass={dropDownClass}
+          closeDropDown={this.closeDropDown}/>
       </section>
     );
   }
