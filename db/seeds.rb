@@ -25,6 +25,8 @@ star_wars_id = Group.find_by_name("Star Wars").id
 leo_salat_id = Group.find_by_name("LeoSalat").id
 jesse_furukawa_id = Group.find_by_name("JesseFurukawa").id
 
+
+User.create!(username: "slackbot", password: "slackbot", email: "slackbot@slackbot.com")
 User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
 
 Subscription.create!(user_id: User.last.id, group_id: general_id)

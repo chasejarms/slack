@@ -50,3 +50,11 @@ export const requestMessageCreation = message => {
     data: { message }
   });
 };
+
+export const requestGroupCreation = group => {
+  return $.ajax({
+    method: "POST",
+    url: 'api/groups',
+    data: { group }
+  });
+};

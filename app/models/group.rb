@@ -4,6 +4,8 @@ class Group < ApplicationRecord
     through: :subscriptions,
     source: :user
 
+  validates :name, uniqueness: true
+
   def self.subscribed_direct_messages(user_id)
     Group.where('channel = ?', false)
     .joins(:users)
