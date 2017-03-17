@@ -29,6 +29,10 @@ div, section, ul, li, html, body, main, h1, h2, h3, h4, h5, h6, p, button, form,
   color: $darker-grey;
 }
 
+li {
+  list-style-type: none;
+}
+
 body {
   overflow-y: hidden;
 }
@@ -82,3 +86,4 @@ button:hover {
 @import "splash";
 @import "chat";
 @import "messages";
+@import "modals";

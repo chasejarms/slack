@@ -4,6 +4,13 @@
   height: 60px;
   border-bottom: 1px solid $light-grey;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.message-banner button {
+  margin-right: 9px;
 }
 
 // individual message styling

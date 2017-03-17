@@ -111,8 +111,8 @@ p.chat-banner-username {
 }
 
 .chat-nav-list li:last-child:hover {
-  box-shadow: inset 0px -2px $darker-blue;
   cursor: pointer;
+  background-color: $slightly-darker-blue;
 }
 
 .chat-banner:focus {
@@ -139,4 +139,22 @@ a.group-item {
 .scroll-anchor {
   float: left;
   clear: both;
+}
+
+.channel-header a {
+  color: inherit;
+}
+
+.channel-header {
+  cursor: pointer;
+}
+
+.channel-header:hover {
+  text-decoration: none;
+  color: $slack-sidebar-add-hover;
+  cursor: pointer;
+}
+
+.channel-header:hover h5 {
+  color: $pure-white;
 }

@@ -1,0 +1,75 @@
+.ReactModal__Content.ReactModal__Content--after-open {
+  // necessary to overcome the default padding
+  padding: 0px !important;
+}
+
+// channel modal
+
+.fa-times-circle {
+  position: absolute;
+  right: 59px;
+  top: 50px;
+  font-size: 50px;
+  color: $green;
+}
+
+.fa-times-circle:hover {
+  color: $slightly-darker-green;
+  cursor: pointer;
+}
+
+.channel-modal-container {
+  text-align: left;
+  padding-top: 150px;
+  width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.channel-modal-container h1 {
+  padding-bottom: 30px;
+  align-self: stretch;
+}
+
+.channel-browse-list li {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  border-bottom: 1px solid $sharp-grey;
+  font-size: 16px;
+}
+
+.channel-browse-list li:hover {
+  background-color: $lightest-grey;
+}
+
+.channel-browse-list a {
+  text-decoration: none;
+}
+
+// styling for new channel
+
+.channel-modal-container.new-channel-container {
+  padding-top: 150px;
+}
+
+.channel-modal-container input {
+  width: 100%;
+}
+
+.channel-modal-container input[type="submit"] {
+  border: 1px solid $green;
+  margin-top: 24px;
+  padding-left: 7px;
+  padding-right: 8px;
+}
+
+.channel-modal-container input[type="submit"]:hover {
+  background-color: $slightly-darker-green;
+  border-color: $slightly-darker-green;
+  box-shadow: none;
+}
+
+.channel-modal-container form {
+  text-align: center;
+}
