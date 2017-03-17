@@ -16,6 +16,7 @@ class Api::MessagesController < ApplicationController
       @message.user_id = current_user.id
       if @message.save
         # is this a good endpoint for this request?
+
         render "api/messages/show"
       else
         render json: @message.errors.full_messages, status: 422
