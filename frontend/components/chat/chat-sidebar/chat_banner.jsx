@@ -11,6 +11,7 @@ class ChatBanner extends React.Component {
     };
     this.toggleDropDown = this.toggleDropDown.bind(this);
     this.closeDropDown = this.closeDropDown.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   logout() {
@@ -51,7 +52,8 @@ class ChatBanner extends React.Component {
           username={username}
           email={email}
           dropDownClass={dropDownClass}
-          closeDropDown={this.closeDropDown}/>
+          closeDropDown={this.closeDropDown}
+          logout={this.logout}/>
       </section>
     );
   }
