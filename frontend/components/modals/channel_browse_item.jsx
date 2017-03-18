@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 
 const ChannelBrowseItem = ({channelInfo, closeModal, subscribedGroups }) => {
 
-  let channelText = subscribedGroups.includes(channelInfo.id) ? "preview" : "chat";
+  let channelText;
 
   if (subscribedGroups.includes(channelInfo.id)) {
-    channelText = <p className="channel-browse-preview-hidden">{ "preview" }</p>;
-  } else {
     channelText = <p className="channel-browse-preview">{ "subscribed" }</p>;
+  } else {
+    channelText = <p className="channel-browse-preview-hidden">{ "preview" }</p>;
   }
 
   return (
