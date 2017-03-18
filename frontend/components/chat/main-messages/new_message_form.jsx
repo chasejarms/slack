@@ -42,18 +42,18 @@ class NewMessageForm extends React.Component {
     if (isSubscribedToGroup) {
       return(
         <div className="new-message-form-container">
-          <form className="new-message-form">
-            <input
-              type="submit"
-              onClick={this.handleNewMessage}
-              value="+"
-              />
-            <input
-              type="text"
-              value={this.state.new_message}
-              onChange={this.handleNewMessageInput}
-              />
-          </form>
+            <form className="new-message-form">
+              <input
+                type="submit"
+                onClick={this.handleNewMessage}
+                value="+"
+                />
+              <input
+                type="text"
+                value={this.state.new_message}
+                onChange={this.handleNewMessageInput}
+                />
+            </form>
         </div>
       );
     } else {

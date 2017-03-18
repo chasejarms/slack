@@ -18,6 +18,7 @@
 .individual-message-container {
   list-style-type: none;
   margin-left: 30px;
+  margin-right: 30px;
   padding-bottom: 20px;
   padding-top: 20px;
 }
@@ -52,7 +53,7 @@
 .new-message-form, .subscribe-channel-button-container {
   position: absolute;
   bottom: 0px;
-  width: calc(100vw - 220px);
+  width: calc(100vw - 240px);
   background-color: $pure-white;
   padding-bottom: 30px;
   display: flex;
@@ -60,7 +61,11 @@
 }
 
 .new-message-form input {
-  width: calc(100vw - 201.41px - 75px - 52px);
+  width: calc(100vw - 320px);
+}
+
+.new-message-form input[type="text"] {
+  margin-right: 30px;
 }
 
 .new-message-form input[type="submit"] {
