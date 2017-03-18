@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import MessageBody from './message_body';
 import { fetchMessages } from '../../../actions/message_actions';
 
-const mapStateToProps = ({currentMessages}) => ({
-  currentMessages
+const mapStateToProps = ({currentMessages, subscribedGroups }) => ({
+  currentMessages,
+  subscribedGroups
 });
 
 const mapDispatchToProps = dispatch => ({

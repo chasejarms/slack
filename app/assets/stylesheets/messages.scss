@@ -49,7 +49,7 @@
 
 // message form styling
 
-.new-message-form {
+.new-message-form, .subscribe-channel-button-container {
   position: absolute;
   bottom: 0px;
   width: calc(100vw - 220px);
@@ -99,6 +99,13 @@
   margin-bottom: 100px;
 }
 
+// center the subscribe button
+
+.subscribe-channel-button-container {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
 
 
 

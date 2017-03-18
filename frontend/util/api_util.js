@@ -35,6 +35,14 @@ export const requestSubscribedGroups = () => {
   });
 };
 
+export const requestNewSubscription = subscription => {
+  return $.ajax({
+    method: "POST",
+    url: 'api/subscriptions',
+    data: { subscription }
+  });
+};
+
 export const requestMessages = groupName => {
   return $.ajax({
     method: "GET",

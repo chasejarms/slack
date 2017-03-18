@@ -8,6 +8,7 @@ class MessageBody extends React.Component {
   constructor(props) {
     super(props);
     this.scrollToBottom = this.scrollToBottom.bind(this);
+    this.isSubscribedToGroup = this.isSubscribedToGroup.bind(this);
   }
 
   componentWillReceiveProps(nextState) {
@@ -41,6 +42,17 @@ class MessageBody extends React.Component {
     node.scrollIntoView({behavior: "smooth"});
   }
 
+  isSubscribedToGroup() {
+    if (this.props.currentMessages.length === 0) {
+      return undefined;
+    }
+
+    const groupId = this.props.currentMessages[0].group_id;
+
+    return this.props.subscribedGroups.includes(groupId);
+
+  }
+
   render() {
     const { currentMessages } = this.props;
     return(
@@ -54,7 +66,10 @@ class MessageBody extends React.Component {
           className="scroll-anchor"
           ref={(el) => { this.messagesEnd = el; }}>
         </div>
-        <NewMessageFormContainer scrollToBottom={this.scrollToBottom}/>
+        <NewMessageFormContainer
+          scrollToBottom={this.scrollToBottom}
+          isSubscribedToGroup={this.isSubscribedToGroup()}
+          />
       </section>
     );
   }

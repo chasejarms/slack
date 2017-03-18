@@ -9,6 +9,7 @@ class NewMessageForm extends React.Component {
     };
     this.handleNewMessageInput = this.handleNewMessageInput.bind(this);
     this.handleNewMessage = this.handleNewMessage.bind(this);
+    this.subscribeToChannel = this.subscribeToChannel.bind(this);
   }
 
   handleNewMessageInput(e) {
@@ -29,23 +30,43 @@ class NewMessageForm extends React.Component {
     });
   }
 
+  subscribeToChannel(e) {
+    e.preventDefault();
+    this.props.requestNewSubscription({
+      group_id: this.props.firstMessage.group_id
+    });
+  }
+
   render() {
-    return(
-      <div className="new-message-form-container">
-        <form className="new-message-form">
-          <input
-            type="submit"
-            onClick={this.handleNewMessage}
-            value="+"
-            />
-          <input
-            type="text"
-            value={this.state.new_message}
-            onChange={this.handleNewMessageInput}
-            />
-        </form>
-      </div>
-    );
+    const { isSubscribedToGroup } = this.props;
+    if (isSubscribedToGroup) {
+      return(
+        <div className="new-message-form-container">
+          <form className="new-message-form">
+            <input
+              type="submit"
+              onClick={this.handleNewMessage}
+              value="+"
+              />
+            <input
+              type="text"
+              value={this.state.new_message}
+              onChange={this.handleNewMessageInput}
+              />
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div className="subscribe-channel-button-container">
+          <button
+            className="green-button subscribe-channel-button"
+            onClick={this.subscribeToChannel}
+            >Subscribe To This Channel
+          </button>
+        </div>
+      );
+    }
   }
 
 }

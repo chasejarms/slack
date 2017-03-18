@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :groups, only: [:index, :create]
-    resources :subscriptions, only: [:index]
+    resources :subscriptions, only: [:index, :create]
     resources :messages, only: [:index, :create]
   end
 end
