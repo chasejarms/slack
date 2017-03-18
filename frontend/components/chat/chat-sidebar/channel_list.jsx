@@ -21,7 +21,6 @@ class ChannelList extends React.Component {
     const { channels, subscribedGroups } = this.props;
     let channelCount = 0;
     channels.forEach(channel => channelCount ++);
-
     let formattedChannels = channels.filter(channel => {
       return subscribedGroups.includes(channel.id);
     }).map(channel => <GroupItem

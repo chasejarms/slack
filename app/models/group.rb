@@ -5,6 +5,7 @@ class Group < ApplicationRecord
     source: :user
 
   validates :name, uniqueness: true
+  validates :name, length: { minimum: 1 }
 
   def self.subscribed_direct_messages(user_id)
     Group.where('channel = ?', false)
@@ -12,11 +13,7 @@ class Group < ApplicationRecord
     .where('users.id = ?', user_id)
   end
 
-  # what should I add to this to sanitize the parameters
-
-  def self.all_channels_with_subscriptions(user_id)
+  def self.all_channels
     Group.where('channel = ?', true)
-    .joins(:users)
-    .where('users.id = ?', user_id)
   end
 end

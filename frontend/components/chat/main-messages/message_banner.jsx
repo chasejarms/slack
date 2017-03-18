@@ -1,5 +1,5 @@
 import React from 'react';
-import NewChannelModal from '../../modals/new_channel_modal';
+import NewChannelModalContainer from '../../modals/new_channel_modal_container';
 
 class MessageBanner extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class MessageBanner extends React.Component {
           Create Channel
         </button>
 
-        <NewChannelModal
+        <NewChannelModalContainer
           modalOpen={this.state.showChannelCreator}
           closeModal={this.toggleModal}
           />

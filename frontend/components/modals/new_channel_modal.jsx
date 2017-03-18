@@ -4,7 +4,15 @@ import Modal from 'react-modal';
 class NewChannelModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      newChannelName: "",
+      errors: undefined
+    };
     this.inlineStyling = this.inlineStyling.bind(this);
+    this.handleNewChannel = this.handleNewChannel.bind(this);
+    this.handleChannelName = this.handleChannelName.bind(this);
+    this.handleErrors = this.handleErrors.bind(this);
+    this.closeModalAndClearErrors = this.closeModalAndClearErrors.bind(this);
   }
 
   inlineStyling() {
@@ -34,8 +42,36 @@ class NewChannelModal extends React.Component {
     };
   }
 
+  handleErrors(errors) {
+    this.setState({ errors });
+  }
+
+  closeModalAndClearErrors() {
+    this.setState({ errors: "" });
+    this.props.closeModal();
+  }
+
+  handleNewChannel(e) {
+    e.preventDefault();
+    this.props.requestGroupCreation({
+      name: this.state.newChannelName,
+      channel: true
+    })
+    .then(resp => this.props.receiveSubscription(resp.group.id))
+    .then(() => this.closeModalAndClearErrors())
+    .fail(err => this.handleErrors(err.responseJSON));
+  }
+
+  handleChannelName(e) {
+    e.preventDefault();
+    this.setState({
+      newChannelName: e.target.value
+    });
+  }
+
   render() {
     const { modalOpen, closeModal, channels } = this.props;
+    const errors = this.state.errors ? <p className="new-channel-errors">{ this.state.errors }</p> : undefined;
     return(
       <Modal
         isOpen={modalOpen}
@@ -44,12 +80,18 @@ class NewChannelModal extends React.Component {
         style={this.inlineStyling()}
         className="new-channel-modal">
 
-        <i className="fa fa-times-circle" onClick={closeModal}></i>
+        <i className="fa fa-times-circle" onClick={this.closeModalAndClearErrors}></i>
         <section className="channel-modal-container new-channel-container">
           <h1>Create Your Channel</h1>
+          { errors }
           <form>
-            <input type="text" placeholder="My Awesome Channel"/>
-            <input value="Create Channel" type="submit"/>
+            <input
+              type="text"
+              placeholder="My Awesome Channel"
+              value={this.state.newChannelName}
+              onChange={this.handleChannelName}
+              />
+            <input value="Create Channel" type="submit" onClick={this.handleNewChannel}/>
           </form>
         </section>
       </Modal>

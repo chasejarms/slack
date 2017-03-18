@@ -1,5 +1,10 @@
 # will use the following things later
 
+def slackbot_message(group_id, channel)
+  correct_message = channel ? "channel" : "direct message"
+  Message.create(user_id: 1, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
+end
+
 character = Proc.new { Faker::StarWars.unique.character }
 droid = Proc.new { Faker::StarWars.unique.droid }
 planet = Proc.new { Faker::StarWars.unique.planet }
@@ -7,6 +12,8 @@ quote = Proc.new { Faker::StarWars.unique.quote }
 specie = Proc.new { Faker::StarWars.unique.specie }
 vehicle = Proc.new { Faker::StarWars.unique.vehicle }
 wookie_sentence = Proc.new { Faker::StarWars.unique.wookie_sentence }
+hipster_words = Proc.new { Faker::Hipster.sentence(rand(15).floor) }
+hacker_sentence= Proc.new { Faker::Hacker.unique.say_something_smart }
 
 # creating a few channels from the start
 
@@ -45,11 +52,11 @@ Subscription.create!(user_id: User.last.id, group_id: jesse_furukawa_id)
   Subscription.create!(user_id: User.last.id, group_id: general_id)
 end
 
-50.times do
+100.times do
   Message.create!(
     user_id: rand(50) + 1,
     group_id: rand(5) + 1,
-    body: wookie_sentence.call()
+    body: hacker_sentence.call()
   )
 end
 

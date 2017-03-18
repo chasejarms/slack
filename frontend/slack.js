@@ -6,14 +6,14 @@ import Modal from 'react-modal';
 
 // for testing only
 
-import * as APIUtil from './util/api_util';
+import { requestGroupCreation } from './actions/groups_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   Modal.setAppElement(document.body);
   // for testing only
 
-  window.requestMessageCreation = APIUtil.requestMessageCreation;
+  window.requestGroupCreation = requestGroupCreation;
 
   let store;
   if (window.currentUser) {
