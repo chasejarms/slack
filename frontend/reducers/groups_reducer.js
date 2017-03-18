@@ -10,7 +10,7 @@ const GroupsReducer = (state = noGroups, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_GROUPS:
-      return merge({}, state, action.groups);
+      return action.groups;
     case RECEIVE_GROUP:
       newState = merge({}, state);
       let formattedGroup = {
