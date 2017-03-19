@@ -22,3 +22,9 @@ export const requestGroupCreation = group => dispatch => (
   APIUtil.requestGroupCreation(group)
   .then(receivedGroup => dispatch(receiveGroup(receivedGroup)))
 );
+
+
+export const requestDirectMessageCreation = group => dispatch => (
+  APIUtil.requestDirectionMessageCreation(group)
+  .then(receivedGroup => dispatch(receiveGroup(receivedGroup)))
+);

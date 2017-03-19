@@ -66,3 +66,18 @@ export const requestGroupCreation = group => {
     data: { group }
   });
 };
+
+export const getUsers = () => (
+  $.ajax({
+    method: "GET",
+    url: "api/users"
+  })
+);
+
+export const requestDirectMessageCreation = group => (
+  $.ajax({
+    method: "POST",
+    url: "api/groups",
+    data: { group }
+  })
+);

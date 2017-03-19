@@ -1,0 +1,21 @@
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $light-grey-scroll-thumb;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $light-grey-scroll-background;
+  border-radius: 10px;
+}
+
+.groups-overflow-container::-webkit-scrollbar-thumb {
+  background-color: $slack-sidebar-font;
+}
+
+.groups-overflow-container::-webkit-scrollbar-track {
+  background-color: $slack-sidebar-hover;
+}

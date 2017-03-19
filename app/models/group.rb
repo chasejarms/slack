@@ -4,6 +4,7 @@ class Group < ApplicationRecord
     through: :subscriptions,
     source: :user
 
+  validates :name, presence: true
   validates :name, uniqueness: true
   validates :name, length: { minimum: 1 }
 

@@ -12,6 +12,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def index
+    if logged_in?
+      @users = User.all.order(:username)
+      render 'api/users/index'
+    else
+      render json: ["You must be logged in to"], status: 422
+    end
+  end
+
   def update
     # will create this later as a bonus feature to update password/username/etc
   end

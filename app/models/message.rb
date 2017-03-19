@@ -8,6 +8,7 @@ class Message < ApplicationRecord
 
   def self.formatted_group_messages(group_id)
     messages_from_group = self.all.where('group_id = ?', group_id)
+    .includes(:user)
     .order(:created_at).to_a
     # format_messages(messages_from_group)
     messages_from_group

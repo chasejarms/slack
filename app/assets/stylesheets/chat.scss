@@ -69,6 +69,7 @@
 
 .chat-nav.chat-nav-visible {
   visibility: visible;
+  z-index: 1;
 }
 
 .chat-nav {
@@ -158,4 +159,35 @@ a.group-item {
 
 .channel-header:hover h5 {
   color: $pure-white;
+}
+
+.groups-overflow-container {
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+}
+
+.direct-message-and-plus {
+  color: $slack-sidebar-font;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.direct-message-and-plus {
+  margin-right: 20px;
+}
+
+.direct-message-and-plus:hover, .direct-message-and-plus:hover h5 {
+  color: $pure-white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.direct-message-and-plus h5 {
+  padding-right: 9px;
+}
+
+.direct-message-and-plus i {
+  position: relative;
+  top: 11px;
+  font-size: 15px;
 }
