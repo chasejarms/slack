@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import ChannelBrowseList from './channel_browse_list';
 import DMCandidateList from './dm_candidate_list';
 import { union, without } from 'lodash';
-import CandidateListForm from '../forms/candidate_list_form';
+import CandidateListFormContainer from '../forms/candidate_list_form_container';
 
 class DirectMessageModal extends React.Component {
   constructor(props) {
@@ -101,11 +101,10 @@ class DirectMessageModal extends React.Component {
       <i className="fa fa-times-circle" onClick={this.closeModalAndClearInput}></i>
       <section className="channel-modal-container">
         <h1>Create A New Direct Message</h1>
-        <CandidateListForm
+        <CandidateListFormContainer
           removeCandidate={this.removeCandidate}
           directMessageCandidates={directMessageCandidates}
           updateCandidateFilter={this.updateCandidateFilter}
-          requestDirectMessageCreation={requestDirectMessageCreation}
           closeModalAndClearInput={this.closeModalAndClearInput}
           />
         <DMCandidateList

@@ -49,7 +49,8 @@ class CandidateListForm extends React.Component {
     e.preventDefault();
     this.props.requestDirectMessageCreation({
       users: this.props.directMessageCandidates
-    }).then(() => this.props.closeModalAndClearInput());
+    }).then(resp => this.props.receiveNewSubscription(resp.group.id))
+    .then(() => this.props.closeModalAndClearInput());
   }
 
   render() {
