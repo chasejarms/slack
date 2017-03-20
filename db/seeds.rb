@@ -15,9 +15,9 @@ hacker_sentence= Proc.new { Faker::Hacker.unique.say_something_smart }
 
 # creating a few channels from the start
 
-Group.create!(name: "General", channel: true)
-Group.create!(name: "Ruby", channel: true)
-Group.create!(name: "Star Wars", channel: true)
+Group.create!(name: "general", channel: true)
+Group.create!(name: "ruby", channel: true)
+Group.create!(name: "golf", channel: true)
 
 20.times do
   # seeding 20 random channels that are all star wars planet names
@@ -28,9 +28,9 @@ Group.create!(name: "Star Wars", channel: true)
   slackbot_message(group_id,true)
 end
 
-general_channel_id = Group.find_by_name("General").id
-ruby_channel_id = Group.find_by_name("Ruby").id
-star_wars_channel_id = Group.find_by_name("Star Wars").id
+general_channel_id = Group.find_by_name("general").id
+ruby_channel_id = Group.find_by_name("ruby").id
+golf_channel_id = Group.find_by_name("golf").id
 
 # subscribing myself to the main channels
 
@@ -38,12 +38,12 @@ chasejarms_user_id = User.last.id
 
 Subscription.create!(user_id: chasejarms_user_id, group_id: general_channel_id)
 Subscription.create!(user_id: chasejarms_user_id, group_id: ruby_channel_id)
-Subscription.create!(user_id: chasejarms_user_id, group_id: star_wars_channel_id)
+Subscription.create!(user_id: chasejarms_user_id, group_id: golf_channel_id)
 
 50.times do
   # 50 random superhero users all subscribed to the general channel
 
-  username = Faker::Superhero.unique.name.split(" ").join("_")
+  username = Faker::Superhero.unique.name.split(" ").join("_").downcase
   User.create!(
     username: username,
     password: Faker::Internet.password(8),

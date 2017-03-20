@@ -30,6 +30,9 @@ export const login = user => dispatch => (
   .fail(err => dispatch(receiveErrors(err.responseJSON)))
 );
 
+
+
+
 export const logout = () => dispatch => (
   APIUtil.logout()
   .then(user => dispatch(receiveCurrentUser(null)))

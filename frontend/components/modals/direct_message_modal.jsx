@@ -2,35 +2,34 @@ import React from 'react';
 import Modal from 'react-modal';
 import ChannelBrowseList from './channel_browse_list';
 import DMCandidateList from './dm_candidate_list';
-import union from 'lodash/union';
+import { union, without } from 'lodash';
+import CandidateListForm from '../forms/candidate_list_form';
 
 class DirectMessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       directMessageCandidates: [],
-      candidateErrors: []
+      candidateErrors: [],
+      candidateFilter: ""
     };
     this.inlineStyling = this.inlineStyling.bind(this);
     this.addToCandidates = this.addToCandidates.bind(this);
-    this.formatMessageCandidates = this.formatMessageCandidates.bind(this);
+    this.removeCandidate = this.removeCandidate.bind(this);
+    this.updateCandidateFilter = this.updateCandidateFilter.bind(this);
+    this.closeModalAndClearInput = this.closeModalAndClearInput.bind(this);
   }
 
-  formatMessageCandidates() {
-    const { directMessageCandidates } = this.state;
-    let result;
-    if (directMessageCandidates) {
-      result = directMessageCandidates.map(candidate => <span>{ candidate }</span>);
-    } else {
-      result = undefined;
-    }
-    return result;
+  updateCandidateFilter(newFilterParameter) {
+    this.setState({
+      candidateFilter: newFilterParameter
+    });
   }
 
   addToCandidates(candidateUsername) {
 
     // imposes the max limit of 7 people total (user not included in count)
-    if (this.state.directMessageCandidates.length > 6) {
+    if (this.state.directMessageCandidates.length >= 6) {
       this.setState({
         candidateErrors: ["Max limit of six people per direct message has been reached"]
       });
@@ -41,7 +40,25 @@ class DirectMessageModal extends React.Component {
         candidateErrors: []
       });
     }
-    console.log(this.state);
+  }
+
+  removeCandidate(candidateUsername) {
+    // work on this when you get back (i.e. deleting something from an array)
+    this.setState({
+      directMessageCandidates: without(this.state.directMessageCandidates, candidateUsername)
+    });
+  }
+
+  closeModalAndClearInput(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    this.props.closeModal(e);
+    this.setState({
+      directMessageCandidates: [],
+      candidateErrors: [],
+      candidateFilter: ""
+    });
   }
 
   inlineStyling() {
@@ -72,7 +89,7 @@ class DirectMessageModal extends React.Component {
   }
 
   render() {
-    const { modalOpen, closeModal, users } = this.props;
+    const { modalOpen, closeModal, users, requestDirectMessageCreation } = this.props;
     const { directMessageCandidates, candidateErrors } = this.state;
     return(
       <Modal
@@ -81,11 +98,18 @@ class DirectMessageModal extends React.Component {
         contentLabel=""
         style={this.inlineStyling()}>
 
-      <i className="fa fa-times-circle" onClick={closeModal}></i>
+      <i className="fa fa-times-circle" onClick={this.closeModalAndClearInput}></i>
       <section className="channel-modal-container">
         <h1>Create A New Direct Message</h1>
-        { this.formatMessageCandidates() }
+        <CandidateListForm
+          removeCandidate={this.removeCandidate}
+          directMessageCandidates={directMessageCandidates}
+          updateCandidateFilter={this.updateCandidateFilter}
+          requestDirectMessageCreation={requestDirectMessageCreation}
+          closeModalAndClearInput={this.closeModalAndClearInput}
+          />
         <DMCandidateList
+          candidateFilter={this.state.candidateFilter}
           addToCandidates={this.addToCandidates}
           users={users}
           candidates={this.state.directMessageCandidates}

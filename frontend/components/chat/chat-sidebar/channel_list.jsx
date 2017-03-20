@@ -26,7 +26,8 @@ class ChannelList extends React.Component {
     }).map(channel => <GroupItem
       groupInfo={ channel }
       key={ channel.id }
-      name={ channel.name.length > 20 ? `${channel.name.slice(0,20)}...` : channel.name }
+      channel={true}
+      name={ channel.name.length > 20 ? `# ${channel.name.slice(0,20)}...` : `# ${channel.name}` }
       />);
 
 

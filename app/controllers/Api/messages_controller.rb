@@ -11,7 +11,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
-    if logged_in?
+    if logged_in? && is_subscribed_to_group?
       @message = Message.new(message_params)
       @message.user_id = current_user.id
       if @message.save
@@ -30,5 +30,16 @@ class Api::MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:group_id, :body)
+  end
+
+  def is_subscribed_to_group?
+    potential_subscription = Subscription.where(
+    user_id: current_user.id,
+    group_id: params[:message][:group_id])
+
+    # will return false if the hacker is not subscribed to a particular group
+    # and still tries to post a message to that group with an ajax request
+
+    !potential_subscription.empty?
   end
 end

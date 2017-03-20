@@ -1,11 +1,13 @@
 import React from 'react';
 import DMCandidateItem from './dm_candidate_item';
 
-const DMCandidateList = ({ addToCandidates, users, candidates }) => {
+const DMCandidateList = ({ addToCandidates, users, candidates, candidateFilter }) => {
   return(
     <ul className="channel-browse-list">
       {
-        users.map(user =><DMCandidateItem
+        users.filter(user => {
+          return candidateFilter == "" || user.username.includes(candidateFilter);
+        }).map(user =><DMCandidateItem
           key={ user.id }
           addToCandidates={ addToCandidates }
           username={user.username}

@@ -13,7 +13,9 @@ class DirectMessageList extends React.Component {
   }
 
   toggleDirectMessageModal(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     this.setState({
       directMessageModal: !this.state.directMessageModal
     });
@@ -24,7 +26,7 @@ class DirectMessageList extends React.Component {
 
     let formattedGroups = directMessages.map(message => {
       let name = message.name.length > 20 ? `${message.name.slice(0,20)}...` : message.name;
-      return <GroupItem groupInfo={ message } name={ name } key={ message.id}/>;
+      return <GroupItem groupInfo={ message } name={ name } key={ message.id} channel={false}/>;
     });
 
     return (

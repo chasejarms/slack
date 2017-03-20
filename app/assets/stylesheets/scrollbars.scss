@@ -19,3 +19,7 @@
 .groups-overflow-container::-webkit-scrollbar-track {
   background-color: $slack-sidebar-hover;
 }
+
+.selected-candidate-container::-webkit-scrollbar {
+  height: 0px;
+}

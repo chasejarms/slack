@@ -100,3 +100,61 @@
   max-height: 50vh;
   overflow:auto;
 }
+
+// dm candidate modal
+
+.selected-candidate-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:20px;
+}
+.selected-candidate-form input[type="submit"] {
+  width: 60px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+}
+
+.selected-candidate-container {
+  margin-right: 17px;
+  width: calc(100% - 60px);
+  border: 1px solid $sharp-grey;
+  border-radius: 4px;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.selected-candidate-container:hover {
+  cursor: text;
+}
+
+.selected-candidate-container:focus, .selected-candidate-container:hover {
+  border-color: $blue;
+}
+
+.selected-candidate-container input[type="text"]{
+  border-color: transparent;
+  min-width: 200px;
+}
+
+.selected-candidate {
+  height: 30px;
+  padding: 0px 10px;
+  margin: 10px;
+  margin-right: 0px;
+  background-color: $green;
+  color: $pure-white;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.fa-times {
+  margin-left: 10px;
+  font-size: 19px;
+  cursor: pointer;
+}
