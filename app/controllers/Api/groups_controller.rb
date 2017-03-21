@@ -50,7 +50,8 @@ class Api::GroupsController < ApplicationController
 
   def slackbot_message(group_id, channel)
     correct_message = channel ? "channel" : "direct message"
-    Message.create(user_id: 1, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
+    slackbot_id = User.find_by_username("slackbot").id
+    Message.create(user_id: slackbot_id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
   end
 
   def subscribe_users(users, group_id)

@@ -4,7 +4,7 @@ import { receiveNewSubscription } from '../../actions/subscription_actions';
 import { connect } from 'react-redux';
 import { requestDirectMessageCreation } from '../../actions/groups_actions';
 
-const lastDMName = (directMessages) => {
+const lastDMName = directMessages => {
   let lastIndex = directMessages.length - 1;
   return (directMessages[lastIndex] || {}).name;
 };

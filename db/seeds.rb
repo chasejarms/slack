@@ -7,12 +7,13 @@ Group.destroy_all
 Message.destroy_all
 Subscription.destroy_all
 
-def slackbot_message(group_id, channel)
+slackbot = User.create!(username: "slackbot", password: "slackbot", email: "slackbot@slackbot.com")
+
+def slackbot_message(group_id, channel, slackbot)
   correct_message = channel ? "channel" : "direct message"
-  Message.create(user_id: 1, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
+  Message.create(user_id: slackbot.id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
 end
 
-slackbot = User.create!(username: "slackbot", password: "slackbot", email: "slackbot@slackbot.com")
 chase = User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
 
 planet = Proc.new { Faker::StarWars.unique.planet }
@@ -30,7 +31,7 @@ Group.create!(name: "golf", channel: true)
   planet_name = planet.call()
   Group.create!(name: planet_name, channel: true)
   group_id = Group.find_by_name(planet_name).id
-  slackbot_message(group_id,true)
+  slackbot_message(group_id,true, slackbot)
 end
 
 general_channel_id = Group.find_by_name("general").id
