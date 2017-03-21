@@ -85,4 +85,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.web_socket_server_url = "wss://slack-chat-project.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://slack-chat-project.herokuapp.com', 'http://slack-chat-project.herokuapp.com']
 end
