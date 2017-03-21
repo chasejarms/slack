@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { isEqual } from 'lodash';
+import { withRouter } from 'react-router';
 
 class CandidateListForm extends React.Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class CandidateListForm extends React.Component {
     this.props.requestDirectMessageCreation({
       users: this.props.directMessageCandidates
     }).then(resp => this.props.receiveNewSubscription(resp.group.id))
+    .then(() => this.props.router.push(`/chat/${this.props.lastDMName}`))
     .then(() => this.props.closeModalAndClearInput());
   }
 
@@ -91,4 +93,4 @@ class CandidateListForm extends React.Component {
   }
 }
 
-export default CandidateListForm;
+export default withRouter(CandidateListForm);

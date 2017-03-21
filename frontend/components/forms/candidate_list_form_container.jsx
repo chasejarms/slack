@@ -4,8 +4,14 @@ import { receiveNewSubscription } from '../../actions/subscription_actions';
 import { connect } from 'react-redux';
 import { requestDirectMessageCreation } from '../../actions/groups_actions';
 
-const mapStateToProps = (state, { directMessageCandidates}) => ({
-  directMessageCandidates
+const lastDMName = (directMessages) => {
+  let lastIndex = directMessages.length - 1;
+  return directMessages[lastIndex].name;
+};
+
+const mapStateToProps = ({ groups: { directMessages }}, { directMessageCandidates}) => ({
+  directMessageCandidates,
+  lastDMName: lastDMName(directMessages)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
