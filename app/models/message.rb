@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  # after_commit { BroadcastGroupJob.perform_later(self, self.channel) }
+  after_create_commit { BroadcastGroupJob.perform_later self, self.group }
 
   belongs_to :group
   belongs_to :user

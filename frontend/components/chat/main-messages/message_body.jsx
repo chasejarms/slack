@@ -9,6 +9,30 @@ class MessageBody extends React.Component {
     super(props);
     this.scrollToBottom = this.scrollToBottom.bind(this);
     this.isSubscribedToGroup = this.isSubscribedToGroup.bind(this);
+    // to create a connection with the server
+    this.createOpenConnectionWithServer = this.createOpenConnectionWithServer.bind(this);
+    this.closePreviousServerConnection = this.closePreviousServerConnection.bind(this);
+    this._scrollAnchorIsOnScreen = this._scrollAnchorIsOnScreen.bind(this);
+  }
+
+  componentDidMount() {
+    this.createOpenConnectionWithServer();
+  }
+
+  createOpenConnectionWithServer() {
+    let that = this;
+    window.App.group = window.App.cable.subscriptions.create({
+      channel: "GroupChannel",
+      group_name: that.props.params.groupName
+    }, {
+      connected: () => {},
+      disconnected: () => {},
+      received: resp => this.props.receiveMessage(resp)
+    });
+  }
+
+  closePreviousServerConnection() {
+    window.App.group.unsubscribe();
   }
 
   componentWillReceiveProps(nextState) {
@@ -26,13 +50,13 @@ class MessageBody extends React.Component {
     // handles change between groups
 
     if (prevFirstMessage && prevFirstMessage !== currentFirstMessage) {
-      this.scrollToBottom();
+      this.closePreviousServerConnection();
+      this.createOpenConnectionWithServer();
     }
 
     // handle initial page load after the messages are
     // received (prevFirstMessage is undefined)
-
-    if (!prevFirstMessage) {
+    if (!prevFirstMessage || this._scrollAnchorIsOnScreen) {
       this.scrollToBottom();
     }
   }
@@ -72,6 +96,14 @@ class MessageBody extends React.Component {
           />
       </section>
     );
+  }
+
+  _scrollAnchorIsOnScreen() {
+    // opportunity to refactor later so there aren't so many requests on the dom
+    let newMessageHeight = $($('.individual-message-container').last()[0]).height();
+    let windowHeight = $(window).height();
+    let anchorPosition = $('.scroll-anchor').offset().top - newMessageHeight;
+    return (anchorPosition < windowHeight);
   }
 }
 
