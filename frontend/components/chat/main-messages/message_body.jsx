@@ -16,6 +16,7 @@ class MessageBody extends React.Component {
   }
 
   componentDidMount() {
+    this.scrollToBottom();
     this.createOpenConnectionWithServer();
   }
 
@@ -52,11 +53,11 @@ class MessageBody extends React.Component {
     if (prevFirstMessage && prevFirstMessage !== currentFirstMessage) {
       this.closePreviousServerConnection();
       this.createOpenConnectionWithServer();
+      this.scrollToBottom();
     }
-
     // handle initial page load after the messages are
     // received (prevFirstMessage is undefined)
-    if (!prevFirstMessage || this._scrollAnchorIsOnScreen) {
+    if (!prevFirstMessage || this._scrollAnchorIsOnScreen()) {
       this.scrollToBottom();
     }
   }
