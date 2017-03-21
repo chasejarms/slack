@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { withRouter } from 'react-router';
 
 class NewChannelModal extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class NewChannelModal extends React.Component {
     this.handleNewChannel = this.handleNewChannel.bind(this);
     this.handleChannelName = this.handleChannelName.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
-    this.closeModalAndClearErrors = this.closeModalAndClearErrors.bind(this);
+    this.closeModalAndClearInput = this.closeModalAndClearInput.bind(this);
   }
 
   inlineStyling() {
@@ -46,8 +47,11 @@ class NewChannelModal extends React.Component {
     this.setState({ errors });
   }
 
-  closeModalAndClearErrors() {
-    this.setState({ errors: "" });
+  closeModalAndClearInput() {
+    this.setState({
+      errors: "",
+      newChannelName: ""
+    });
     this.props.closeModal();
   }
 
@@ -57,8 +61,11 @@ class NewChannelModal extends React.Component {
       name: this.state.newChannelName,
       channel: true
     })
-    .then(resp => this.props.receiveSubscription(resp.group.id))
-    .then(() => this.closeModalAndClearErrors())
+    .then(resp => {
+      this.props.receiveSubscription(resp.group.id);
+      return this.props.router.push(`/chat/${resp.group.name}`);
+    })
+    .then(() => this.closeModalAndClearInput())
     .fail(err => this.handleErrors(err.responseJSON));
   }
 
@@ -80,7 +87,7 @@ class NewChannelModal extends React.Component {
         style={this.inlineStyling()}
         className="new-channel-modal">
 
-        <i className="fa fa-times-circle" onClick={this.closeModalAndClearErrors}></i>
+        <i className="fa fa-times-circle" onClick={this.closeModalAndClearInput}></i>
         <section className="channel-modal-container new-channel-container">
           <h1>Create Your Channel</h1>
           { errors }
@@ -99,4 +106,4 @@ class NewChannelModal extends React.Component {
   }
 }
 
-export default NewChannelModal;
+export default withRouter(NewChannelModal);
