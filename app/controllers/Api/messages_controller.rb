@@ -1,10 +1,20 @@
 class Api::MessagesController < ApplicationController
   def index
     if logged_in?
-      group_id = Group.where('name = ?', params[:groupName])
-      .order(created_at: :desc).to_a[0].id
-      @messages = Message.formatted_group_messages(group_id)
-      render 'api/messages/index'
+      group = Group.where('name = ?', params[:groupName])
+      .order(created_at: :desc).to_a[0];
+
+      users = group.users if !group.channel
+
+      # don't let a user see a direct message if they are not subscribed to that dm
+      if !group.channel && !users.include?(current_user)
+        render json: ["Create new direct message"], status: 404
+      else
+        group_id = group.id
+        @messages = Message.formatted_group_messages(group_id)
+        render 'api/messages/index'
+      end
+
     else
       render json: ["You must be logged in to view messages"], status: 401
     end
