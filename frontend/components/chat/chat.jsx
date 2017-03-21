@@ -13,7 +13,7 @@ class Chat extends React.Component {
       this.props.requestSubscribedGroups().then(resp => this.props.requestGroups());
       this.props.requestMessages(this.props.params.groupName);
       this.props.requestUsers();
-    }, 2000);
+    }, 500);
   }
 
   render() {
