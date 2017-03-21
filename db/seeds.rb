@@ -2,13 +2,18 @@
 # this helps on the frontend to send the correct group id
 # when adding a new message to the channel
 
+User.destroy_all
+Group.destroy_all
+Message.destroy_all
+Subscription.destroy_all
+
 def slackbot_message(group_id, channel)
   correct_message = channel ? "channel" : "direct message"
   Message.create(user_id: 1, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
 end
 
-User.create!(username: "slackbot", password: "slackbot", email: "slackbot@slackbot.com")
-User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
+slackbot = User.create!(username: "slackbot", password: "slackbot", email: "slackbot@slackbot.com")
+chase = User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
 
 planet = Proc.new { Faker::StarWars.unique.planet }
 hacker_sentence= Proc.new { Faker::Hacker.unique.say_something_smart }
@@ -32,6 +37,8 @@ general_channel_id = Group.find_by_name("general").id
 ruby_channel_id = Group.find_by_name("ruby").id
 golf_channel_id = Group.find_by_name("golf").id
 
+groups = [general_channel_id, ruby_channel_id, golf_channel_id]
+
 # subscribing myself to the main channels
 
 chasejarms_user_id = User.last.id
@@ -40,11 +47,13 @@ Subscription.create!(user_id: chasejarms_user_id, group_id: general_channel_id)
 Subscription.create!(user_id: chasejarms_user_id, group_id: ruby_channel_id)
 Subscription.create!(user_id: chasejarms_user_id, group_id: golf_channel_id)
 
+superhero_users = []
+
 50.times do
   # 50 random superhero users all subscribed to the general channel
 
   username = Faker::Superhero.unique.name.split(" ").join("_").downcase
-  User.create!(
+  superhero_users << User.create!(
     username: username,
     password: Faker::Internet.password(8),
     email: "#{username}@starwars.com"
@@ -56,8 +65,8 @@ end
   # 100 random messages for the three channels that exist
 
   Message.create!(
-    user_id: rand(50) + 1,
-    group_id: rand(3) + 1,
+    user_id: superhero_users.sample.id,
+    group_id: groups.sample,
     body: hacker_sentence.call()
   )
 end

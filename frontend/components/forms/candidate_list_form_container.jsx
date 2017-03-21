@@ -6,7 +6,7 @@ import { requestDirectMessageCreation } from '../../actions/groups_actions';
 
 const lastDMName = (directMessages) => {
   let lastIndex = directMessages.length - 1;
-  return directMessages[lastIndex].name;
+  return (directMessages[lastIndex] || {}).name;
 };
 
 const mapStateToProps = ({ groups: { directMessages }}, { directMessageCandidates}) => ({
