@@ -1,6 +1,7 @@
 import React from 'react';
 import ChatSidebarContainer from './chat-sidebar/chat_sidebar_container';
 import Messages from './main-messages/messages';
+import Loading from './loading';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -8,9 +9,11 @@ class Chat extends React.Component {
   }
 
   componentWillMount() {
-    this.props.requestSubscribedGroups().then(resp => this.props.requestGroups());
-    this.props.requestMessages(this.props.params.groupName);
-    this.props.requestUsers();
+    window.setTimeout(() => {
+      this.props.requestSubscribedGroups().then(resp => this.props.requestGroups());
+      this.props.requestMessages(this.props.params.groupName);
+      this.props.requestUsers();
+    }, 2000);
   }
 
   render() {
@@ -24,7 +27,7 @@ class Chat extends React.Component {
       );
     } else {
       return(
-        <div>Not yet loaded</div>
+        <Loading />
       );
     }
   }

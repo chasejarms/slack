@@ -10,7 +10,7 @@
   overflow-x: hidden;
 }
 
-.chat-sidebar {
+.chat-sidebar, .loading-left-side {
   width: 225px;
   min-width: 225px;
   background-color: $slack-sidebar;

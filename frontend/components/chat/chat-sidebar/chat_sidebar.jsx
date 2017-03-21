@@ -2,7 +2,6 @@ import React from 'react';
 import ChatBannerContainer from './chat_banner_container';
 import ChannelList from './channel_list';
 import DirectMessageList from './direct_message_list';
-import Loading from './loading';
 
 class ChatSidebar extends React.Component {
   constructor(props) {
@@ -26,10 +25,6 @@ class ChatSidebar extends React.Component {
               />
           </div>
         </aside>
-      );
-    } else {
-      return(
-        <Loading />
       );
     }
   }
