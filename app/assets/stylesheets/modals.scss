@@ -158,3 +158,11 @@
   font-size: 19px;
   cursor: pointer;
 }
+
+.direct-message-errors {
+  margin-bottom: 25px;
+}
+
+.direct-message-errors p {
+  color: $red;
+}

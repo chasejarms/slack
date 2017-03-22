@@ -18,6 +18,8 @@ class DirectMessageModal extends React.Component {
     this.removeCandidate = this.removeCandidate.bind(this);
     this.updateCandidateFilter = this.updateCandidateFilter.bind(this);
     this.closeModalAndClearInput = this.closeModalAndClearInput.bind(this);
+    this.formatAllErrors = this.formatAllErrors.bind(this);
+    this.updateCandidateErrors = this.updateCandidateErrors.bind(this);
   }
 
   updateCandidateFilter(newFilterParameter) {
@@ -88,9 +90,26 @@ class DirectMessageModal extends React.Component {
     };
   }
 
+  formatAllErrors() {
+    const { candidateErrors } = this.state;
+    if (candidateErrors) {
+      return (
+        <div className="direct-message-errors">
+          <p>{ candidateErrors }</p>
+        </div>
+      );
+    }
+  }
+
+  updateCandidateErrors(newError) {
+    this.setState({
+      candidateErrors: union(this.state.candidateErrors, newError)
+    });
+  }
+
   render() {
     const { modalOpen, closeModal, users, requestDirectMessageCreation } = this.props;
-    const { directMessageCandidates, candidateErrors } = this.state;
+    const { directMessageCandidates } = this.state;
     return(
       <Modal
         isOpen={modalOpen}
@@ -101,11 +120,13 @@ class DirectMessageModal extends React.Component {
       <i className="fa fa-times-circle" onClick={this.closeModalAndClearInput}></i>
       <section className="channel-modal-container">
         <h1>Create A New Direct Message</h1>
+        { this.formatAllErrors() }
         <CandidateListFormContainer
           removeCandidate={this.removeCandidate}
           directMessageCandidates={directMessageCandidates}
           updateCandidateFilter={this.updateCandidateFilter}
           closeModalAndClearInput={this.closeModalAndClearInput}
+          updateCandidateErrors={this.updateCandidateErrors}
           />
         <DMCandidateList
           candidateFilter={this.state.candidateFilter}

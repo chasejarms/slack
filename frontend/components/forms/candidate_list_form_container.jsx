@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   updateCandidateFilter: newFilterParameter => ownProps.updateCandidateFilter(newFilterParameter),
   closeModalAndClearInput: e => ownProps.closeModalAndClearInput(e),
   requestDirectMessageCreation: group => dispatch(requestDirectMessageCreation(group)),
-  removeCandidate: candidateUsername => ownProps.removeCandidate(candidateUsername)
+  removeCandidate: candidateUsername => ownProps.removeCandidate(candidateUsername),
+  updateCandidateErrors: newError => ownProps.updateCandidateErrors(newError)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CandidateListForm);

@@ -18,6 +18,7 @@ class AuthenticationForm extends React.Component {
     this.clearErrors = this._clearErrors.bind(this);
     this.login = this._login.bind(this);
     this.signUp = this._signUp.bind(this);
+    this._formatAuthenticationText = this._formatAuthenticationText.bind(this);
   }
 
   _formatErrors() {
@@ -33,12 +34,29 @@ class AuthenticationForm extends React.Component {
     }
   }
 
+  _formatAuthenticationText() {
+    if (this.props.actionType !== "signup") {
+      return(
+        <p className="large-margin-bottom">
+          Enter your <strong>Email Address</strong> and <strong>Password</strong>
+        </p>
+      );
+    } else {
+      return (
+        <p className="large-margin-bottom">
+          Enter your <strong>Username</strong>, <strong>Email Address</strong>, and <strong>Password</strong>
+        </p>
+      );
+    }
+  }
+
   _login() {
     this.props.login({
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
     });
+    this.props.clearErrors();
   }
 
   _signUp() {
@@ -47,6 +65,7 @@ class AuthenticationForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     });
+    this.props.clearErrors();
   }
 
   _toggleUsernameInput() {
@@ -129,7 +148,7 @@ class AuthenticationForm extends React.Component {
     return(
       <div className="authentication-form-container">
         <h1 className="large-margin-bottom">{headerValue}</h1>
-        <p className="large-margin-bottom">Enter your <strong>Email Address</strong> and <strong>Password</strong></p>
+        { this._formatAuthenticationText() }
         { errors }
         <form>
           { usernameInput }

@@ -37,8 +37,9 @@ class MessageBanner extends React.Component {
 
   formatCurrentGroup() {
     const { currentGroup } = this.props;
+    const nameLength = (currentGroup || []).length;
 
-    if (currentGroup.length > 60) {
+    if (nameLength > 60) {
       return `${this.props.currentGroup.slice(0, this.state.sliceEnd)}...`;
     } else {
       return currentGroup;
