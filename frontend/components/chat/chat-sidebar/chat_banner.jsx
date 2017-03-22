@@ -15,7 +15,8 @@ class ChatBanner extends React.Component {
   }
 
   logout() {
-    this.props.logout();
+    this.props.logout()
+    .then(() => this.props.clearState());
   }
 
   componentDidUpdate() {

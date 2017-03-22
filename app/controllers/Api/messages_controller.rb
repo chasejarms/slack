@@ -4,14 +4,20 @@ class Api::MessagesController < ApplicationController
       group = Group.where('name = ?', params[:groupName])
       .order(created_at: :desc).to_a[0];
 
-      users = group.users if !group.channel
+      # ensures the server doesn't fail if no group is found with that groupName
+
+      users = group.users if group && !group.channel
 
       # don't let a user see a direct message if they are not subscribed to that dm
-      if !group.channel && !users.include?(current_user)
+      if !group
+        render json: ["No group found with that name"], status: 404
+      elsif !group.channel && !users.include?(current_user)
         render json: ["Create new direct message"], status: 404
       else
         group_id = group.id
         @messages = Message.formatted_group_messages(group_id)
+        @group_name = params[:groupName]
+
         render 'api/messages/index'
       end
 

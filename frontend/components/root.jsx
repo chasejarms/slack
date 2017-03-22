@@ -28,13 +28,14 @@ const Root = ({store}) => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <IndexRedirect to="login"/>
-          <Route path="login" component={SplashLogIn} onEnter={_redirectIfLoggedIn}/>
-          <Route path="sign-up" component={SplashSignUp} onEnter={_redirectIfLoggedIn}/>
-          <Route path="chat" component={ChatContainer} onEnter={_checkLoggedIn}>
-            <IndexRedirect to="general"/>
-            <Route path=":groupName"></Route>
-          </Route>
+            <IndexRedirect to="login"/>
+            <Route path="login" component={SplashLogIn} onEnter={_redirectIfLoggedIn}/>
+            <Route path="sign-up" component={SplashSignUp} onEnter={_redirectIfLoggedIn}/>
+            <Route path="chat" component={ChatContainer} onEnter={_checkLoggedIn}>
+              <IndexRedirect to="general"/>
+              <Route path=":groupName"></Route>
+              <Route component={SplashLogIn}></Route>
+            </Route>
         </Route>
       </Router>
     </Provider>

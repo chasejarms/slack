@@ -3,11 +3,16 @@ import * as APIUtil from '../util/api_util';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const CLEAR_STATE = 'CLEAR_STATE';
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
+
+export const clearState = {
+  type: CLEAR_STATE
+};
 
 export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,

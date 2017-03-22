@@ -1,10 +1,10 @@
 import React from 'react';
-import MessageBanner from './message_banner';
+import MessageBannerContainer from './message_banner_container';
 import MessageBodyContainer from './message_body_container';
 
 const Messages = () => (
   <div>
-    <MessageBanner />
+    <MessageBannerContainer />
     <section className="main-messages">
       <MessageBodyContainer />
     </section>

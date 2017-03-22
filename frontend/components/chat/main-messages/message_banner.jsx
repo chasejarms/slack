@@ -5,9 +5,28 @@ class MessageBanner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showChannelCreator: false
+      showChannelCreator: false,
+      sliceEnd: 60
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.formatCurrentGroup = this.formatCurrentGroup.bind(this);
+    this.updateSliceLength = this.updateSliceLength.bind(this);
+  }
+
+  updateSliceLength() {
+    let windowWidth = $(window).width() - 400;
+
+    this.setState({
+      sliceEnd: Math.floor(windowWidth / 12)
+    });
+  }
+
+  componentWillMount() {
+    window.addEventListener("resize", this.updateSliceLength);
+  }
+
+  componentDidMount() {
+    this.updateSliceLength();
   }
 
   toggleModal() {
@@ -16,9 +35,23 @@ class MessageBanner extends React.Component {
     });
   }
 
+  formatCurrentGroup() {
+    const { currentGroup } = this.props;
+
+    if (currentGroup.length > 60) {
+      return `${this.props.currentGroup.slice(0, this.state.sliceEnd)}...`;
+    } else {
+      return currentGroup;
+    }
+  }
+
   render() {
     return(
       <section className="message-banner">
+
+        <div>
+          { this.formatCurrentGroup() }
+        </div>
 
         <button
           className="solid-button-style green-button"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ChatBanner from './chat_banner';
-import { logout } from '../../../actions/session_actions';
+import { logout, clearState } from '../../../actions/session_actions';
 
 const mapStateToProps = ({ session }) => {
   const username = session.currentUser ? session.currentUser.username : undefined;
@@ -14,7 +14,8 @@ const mapStateToProps = ({ session }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  clearState: () => dispatch(clearState)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatBanner);
