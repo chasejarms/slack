@@ -14,16 +14,16 @@ class ChatSidebar extends React.Component {
       return (
         <aside className="chat-sidebar">
           <ChatBannerContainer />
-          <div className="groups-overflow-container">
-            <ChannelList
-              channels={ channels }
-              subscribedGroups={ subscribedGroups }
-              />
-            <DirectMessageList
-              directMessages={ directMessages }
-              subscribedGroups={ subscribedGroups }
-              />
-          </div>
+            <div className="groups-overflow-container">
+              <ChannelList
+                channels={ channels }
+                subscribedGroups={ subscribedGroups }
+                />
+              <DirectMessageList
+                directMessages={ directMessages }
+                subscribedGroups={ subscribedGroups }
+                />
+            </div>
         </aside>
       );
     }

@@ -100,3 +100,19 @@ input[type="submit"]:hover, input[type="submit"]:focus {
   width: 100px;
   margin-left: 17px;
 }
+
+// media queries
+
+@media screen and (max-height: 600px) {
+  .login-signup {
+    display: block;
+    padding-top: 80px;
+    padding-bottom: 10px;
+    overflow: scroll;
+  }
+
+  .authentication-form-container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

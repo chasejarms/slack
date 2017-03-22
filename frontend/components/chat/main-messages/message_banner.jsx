@@ -21,12 +21,13 @@ class MessageBanner extends React.Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener("resize", this.updateSliceLength);
+    this.updateSliceLength();
   }
 
-  componentDidMount() {
-    this.updateSliceLength();
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateSliceLength);
   }
 
   toggleModal() {

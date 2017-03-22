@@ -19,7 +19,7 @@
 }
 
 .message-banner button {
-  flex: 0 0 100px;
+  flex: 0 0 104px;
 }
 
 // individual message styling
@@ -121,7 +121,11 @@
   background-color: transparent;
 }
 
+// formatting for firefox
 
+#new-message-form.message-form-firefox {
+  width: calc(100vw - 240px);
+}
 
 
 

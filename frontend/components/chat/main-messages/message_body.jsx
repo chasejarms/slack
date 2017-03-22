@@ -13,11 +13,20 @@ class MessageBody extends React.Component {
     this.createOpenConnectionWithServer = this.createOpenConnectionWithServer.bind(this);
     this.closePreviousServerConnection = this.closePreviousServerConnection.bind(this);
     this._scrollAnchorIsOnScreen = this._scrollAnchorIsOnScreen.bind(this);
+    this.resizeIfFirefox = this.resizeIfFirefox.bind(this);
   }
 
   componentDidMount() {
     this.scrollToBottom();
     this.createOpenConnectionWithServer();
+    this.resizeIfFirefox();
+  }
+
+  resizeIfFirefox() {
+    let isFirefox = typeof InstallTrigger !== 'undefined';
+    if (isFirefox) {
+      $('#new-message-form').addClass('message-form-firefox');
+    }
   }
 
   createOpenConnectionWithServer() {

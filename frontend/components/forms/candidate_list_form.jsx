@@ -58,7 +58,7 @@ class CandidateListForm extends React.Component {
 
   render() {
     const { directMessageCandidates, removeCandidate } = this.props;
-    const placeholder = directMessageCandidates.length === 0 ? "Add a user (max 7)" : "";
+    const placeholder = directMessageCandidates.length === 0 ? "Add a user (max 6)" : "";
     return(
       <form className="selected-candidate-form">
         <div className="selected-candidate-container" onClick={this.autoFocusFilterBox}>
