@@ -53,7 +53,7 @@ class CandidateListForm extends React.Component {
     }).then(resp => this.props.receiveNewSubscription(resp.group.id))
     .then(() => this.props.router.push(`/chat/${this.props.lastDMName}`))
     .then(() => this.props.closeModalAndClearInput())
-    .fail((err) => this.props.updateCandidateErrors(err.responseJSON));
+    .fail(() => this.props.updateCandidateErrors(["Direct message already exists"]));
   }
 
   render() {
