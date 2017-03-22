@@ -31,6 +31,7 @@ class Api::GroupsController < ApplicationController
 
       subscribe_creator(@group.id)
       slackbot_message(@group.id, @group.channel)
+      UpdateBroadcastJob.perform_later @group, @group.subscriptions.to_a
 
       render 'api/groups/show'
     else

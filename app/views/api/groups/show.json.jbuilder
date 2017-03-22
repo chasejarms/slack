@@ -1,1 +1,1 @@
-json.extract! @group, :id, :name, :channel
+json.partial! 'group', group: @group

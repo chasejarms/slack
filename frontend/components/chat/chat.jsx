@@ -6,6 +6,9 @@ import Loading from './loading';
 class Chat extends React.Component {
   constructor(props) {
     super(props);
+    this.createOpenConnectionWithServer = this.createOpenConnectionWithServer.bind(this);
+    this.closePreviousServerConnection = this.closePreviousServerConnection.bind(this);
+    this.receiveNewChannels = this.receiveNewChannels.bind(this);
   }
 
   componentWillMount() {
@@ -14,6 +17,48 @@ class Chat extends React.Component {
       this.props.requestMessages(this.props.params.groupName);
       this.props.requestUsers();
     }, 500);
+  }
+
+  componentDidMount() {
+    this.createOpenConnectionWithServer();
+  }
+
+  componentWillUnmount() {
+    this.closePreviousServerConnection();
+  }
+
+  receiveNewChannels({ group, subscriptions }) {
+
+    // this might cause the creator to get two things added to their state
+    const currentUserId = this.props.currentUser.id;
+
+    if (this.props.lastSubscriptionId === group.id) {
+      return;
+    }
+
+    if (group.channel) {
+      this.props.receiveGroup(group);
+    } else if (subscriptions.includes(currentUserId)) {
+      this.props.receiveGroup(group);
+      this.props.receiveNewSubscription(group.id);
+    }
+  }
+
+  createOpenConnectionWithServer() {
+    let that = this;
+    window.App.update = window.App.cable.subscriptions.create({
+      channel: "UpdateChannel"
+    }, {
+      connected: () => {},
+      disconnected: () => {},
+      // implement action creater to run when a new channel
+      // or direct message is received
+      received: (data) => this.receiveNewChannels(JSON.parse(data.new_group))
+    });
+  }
+
+  closePreviousServerConnection() {
+    window.App.update.unsubscribe();
   }
 
   render() {
