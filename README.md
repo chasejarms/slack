@@ -1,6 +1,6 @@
 # QuackChat
 
-[Quack.today](www.quack.today) is a web application for users to efficiently collaborate. QuackChat lets users create single and multi person direct messages, subscribe to publicly available channels, and communicate in real time.
+[Quack.today](http://www.quack.today) is a web application for users to efficiently collaborate. QuackChat lets users create single and multi person direct messages, subscribe to publicly available channels, and communicate in real time.
 
 Quack is a personal project by Chase Armstrong.
 
