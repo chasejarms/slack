@@ -28,7 +28,7 @@ Group.create!(name: "golf", channel: true)
 20.times do
   # seeding 20 random channels that are all star wars planet names
 
-  planet_name = planet.call().split(" ").join("_")
+  planet_name = planet.call().scan(/[-_@a-zA-Z0-9]+/).join("_")
   Group.create!(name: planet_name, channel: true)
   group_id = Group.find_by_name(planet_name).id
   quackbot_message(group_id,true, quackbot)
@@ -53,7 +53,7 @@ superhero_users = []
 50.times do
   # 50 random superhero users all subscribed to the general channel
 
-  username = Faker::Superhero.unique.name.split(" ").join("_").downcase
+  username = Faker::Superhero.unique.name.scan(/[-_@a-zA-Z0-9]+/).join("_").downcase
   superhero_users << User.create!(
     username: username,
     password: Faker::Internet.password(8),
