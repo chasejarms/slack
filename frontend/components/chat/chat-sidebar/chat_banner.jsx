@@ -45,7 +45,7 @@ class ChatBanner extends React.Component {
     return(
       <section className="chat-banner" onClick={this.toggleDropDown}>
         <div className="chat-header-container">
-          <h3>Slack</h3>
+          <h3>QuackChat</h3>
           <span className="fa fa-chevron-down"></span>
         </div>
         <p className="chat-banner-username">{ username }</p>

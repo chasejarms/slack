@@ -17,7 +17,7 @@ class ChatBannerDropdown extends React.Component {
         <ul className="chat-nav-list">
           <li className="chat-nav-list-li">Email: { email }</li>
           <li className="chat-nav-list-li">Username: { username }</li>
-          <li onClick={this.props.logout}>Sign Out Of Slack</li>
+          <li onClick={this.props.logout}>Sign Out Of QuackChat</li>
         </ul>
       </section>
     );

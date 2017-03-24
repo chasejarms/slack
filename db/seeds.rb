@@ -1,4 +1,4 @@
-# every channel has a slackbot message as the first message
+# every channel has a quackbot message as the first message
 # this helps on the frontend to send the correct group id
 # when adding a new message to the channel
 
@@ -7,11 +7,11 @@ Group.destroy_all
 Message.destroy_all
 Subscription.destroy_all
 
-slackbot = User.create!(username: "slackbot", password: "slackbot", email: "slackbot@slackbot.com")
+quackbot = User.create!(username: "quackbot", password: "quackbot", email: "quackbot@quackbot.com")
 
-def slackbot_message(group_id, channel, slackbot)
+def quackbot_message(group_id, channel, quackbot)
   correct_message = channel ? "channel" : "direct message"
-  Message.create(user_id: slackbot.id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
+  Message.create(user_id: quackbot.id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
 end
 
 chase = User.create!(username: "chasejarms", password: "password", email: "chasejarms@gmail.com")
@@ -31,7 +31,7 @@ Group.create!(name: "golf", channel: true)
   planet_name = planet.call()
   Group.create!(name: planet_name, channel: true)
   group_id = Group.find_by_name(planet_name).id
-  slackbot_message(group_id,true, slackbot)
+  quackbot_message(group_id,true, quackbot)
 end
 
 general_channel_id = Group.find_by_name("general").id

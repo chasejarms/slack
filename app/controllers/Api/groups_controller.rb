@@ -30,7 +30,7 @@ class Api::GroupsController < ApplicationController
       subscribe_users(direct_message_users, @group.id) unless @group.channel
 
       subscribe_creator(@group.id)
-      slackbot_message(@group.id, @group.channel)
+      quackbot_message(@group.id, @group.channel)
       UpdateBroadcastJob.perform_later @group, @group.subscriptions.to_a
 
       render 'api/groups/show'
@@ -49,10 +49,10 @@ class Api::GroupsController < ApplicationController
     Subscription.create(user_id: current_user.id, group_id: group_id)
   end
 
-  def slackbot_message(group_id, channel)
+  def quackbot_message(group_id, channel)
     correct_message = channel ? "channel" : "direct message"
-    slackbot_id = User.find_by_username("slackbot").id
-    Message.create(user_id: slackbot_id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
+    quackbot_id = User.find_by_username("quackbot").id
+    Message.create(user_id: quackbot_id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
   end
 
   def subscribe_users(users, group_id)

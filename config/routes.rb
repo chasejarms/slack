@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index, :create]
     resources :messages, only: [:index, :create]
   end
+  
 end
