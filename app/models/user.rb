@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :password_digest, :username, :session_token, :email, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :username, :session_token, :email, uniqueness: true
+  validates :username, format: { with: /\A[-_@a-zA-Z0-9]+\z/, message: "- Invalid characters" }
 
   attr_reader :password
 
