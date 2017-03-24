@@ -20,8 +20,6 @@ After the plan was complete, I began developing the site in slices. With each sl
 
 - Secure user authentication
 
-![Direct Message View](/docs/screenshots/authentication.png)
-
 - Real time channel and direct message creation
 
 - Real time messaging
