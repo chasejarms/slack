@@ -16,12 +16,12 @@ Quack is a personal project by Chase Armstrong.
 
 ## Technology
 
-The front end is build with React/Redux and the backend is built with Rails. It's really fast because of React as the page only renders when something changes. Also the pieces of the page can be reused allowing for quick development.
+The front end is build with React/Redux and the backend is built with Rails. The app quickly handles user interaction, only changing the bare minimum number of HTML nodes as determined by React's diffing algorithm.
 
-The backend is built with Rails. There's not a lot to talk about here besides Action Cable which is really cool. It creates an open connection between the server and the browser to make messaging instantaneous.
+The back end is a Rails app. The most exciting components of this particular Rails app is the Action Cable implementation which allows for real time messaging, channel creation, and direct message subscription.
 
-## Project Design
+## Project Design and Development
 
-QuackChat was designed and built in two weeks.
+QuackChat was designed and built in two weeks. Before drilling into the app implementation, I spent a day designing the [database schema][/docs/schema.md], creating the initial project [wireframes][/docs/wireframes], and mapping out my [API endpoints][/docs/api-endpoints.md].
 
-Before starting the project, I spent a day designing the database schema ( Link to schema ), creating the initial project wireframes ( Link to schema ), and mapping out my API endpoints ( Link to API endpoints ). From there, I spent time creating static components that gave me the framework for the site. I believe it's better to visualize the page first so that you can understand what information you're going to need from your backend. After building out static views, I built out my backend working in slices. Then I would start at the api, working through the redux-cycle back to my components. The last step was to make the components dynamic.
+After the plan was complete, I began developing the site in slices. With each slice, I created static components that helped me visualize the data structure I would need when making AJAX requests. Next, I would move into the backend, testing my endpoints to ensure the data would be easily consumed in my React views. After the backend for a given slice was finished, I began my redux cycle implementation. I would work from my AJAX request to my actions and finally into the reducers, testing after each piece. And finally, I would make my static components dynamic, creating container components where necessary.
