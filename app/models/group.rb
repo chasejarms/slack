@@ -8,7 +8,7 @@ class Group < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :name, length: { minimum: 1 }
-  validates :name, format: { with: /\A[-_@a-zA-Z0-9]+\z/, message: "- Invalid characters" }
+  validates :name, format: { with: /\A[,-_@a-zA-Z0-9]+\z/, message: "- Invalid characters" }
 
   def self.subscribed_direct_messages(user_id)
     Group.where('channel = ?', false)
@@ -19,4 +19,5 @@ class Group < ApplicationRecord
   def self.all_channels
     Group.where('channel = ?', true)
   end
+
 end

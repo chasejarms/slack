@@ -51,7 +51,6 @@ class Api::GroupsController < ApplicationController
 
   def quackbot_message(group_id, channel)
     correct_message = channel ? "channel" : "direct message"
-    debugger
     quackbot_id = User.find_by_username("quackbot").id
     Message.create(user_id: quackbot_id, group_id: group_id, body: "This is the beginning of your #{correct_message}.")
   end
