@@ -2,17 +2,29 @@
 
 [Quack.today](http://www.quack.today) is a web application for users to efficiently collaborate. QuackChat lets users create single and multi person direct messages, subscribe to publicly available channels, and communicate in real time.
 
-Quack is a personal project by Chase Armstrong.
+QuackChat, a Slack clone, is a personal project by Chase Armstrong.
 
 ## Features
 
-- Real time messaging
+- Secure user authentication
+
+![Direct Message View](/docs/screenshots/authentication.png)
 
 - Real time channel and direct message creation
 
+- Real time messaging
+
+![Instant Messaging View](/docs/screenshots/instant_messaging.png)
+
 - Single and multi person direct messages
 
+![Direct Message View](/docs/screenshots/direct_message_creation.png)
+
 - Smart scrolling for a clean user experience
+
+- Preview channels before subscribing
+
+![Direct Message View](/docs/screenshots/subscribe_to_channel.png)
 
 ## Technology
 
