@@ -1,5 +1,8 @@
+import axios from 'axios';
+window.axios = axios;
+
 export const signup = user => {
-  return $.ajax({
+  return axios({
     method: 'POST',
     url: 'api/users',
     data: {user}
@@ -7,7 +10,7 @@ export const signup = user => {
 };
 
 export const login = user => {
-  return $.ajax({
+  return axios({
     method: 'POST',
     url: 'api/session',
     data: {user}
@@ -15,28 +18,28 @@ export const login = user => {
 };
 
 export const logout = () => {
-  return $.ajax({
+  return axios({
     method: 'DELETE',
     url: 'api/session'
   });
 };
 
 export const requestGroups = () => {
-  return $.ajax({
+  return axios({
     method: "GET",
     url: 'api/groups/'
   });
 };
 
 export const requestSubscribedGroups = () => {
-  return $.ajax({
+  return axios({
     method: "GET",
     url: 'api/subscriptions'
   });
 };
 
 export const requestNewSubscription = subscription => {
-  return $.ajax({
+  return axios({
     method: "POST",
     url: 'api/subscriptions',
     data: { subscription }
@@ -44,7 +47,7 @@ export const requestNewSubscription = subscription => {
 };
 
 export const requestMessages = groupName => {
-  return $.ajax({
+  return axios({
     method: "GET",
     url: 'api/messages',
     data: { groupName }
@@ -52,7 +55,7 @@ export const requestMessages = groupName => {
 };
 
 export const requestMessageCreation = message => {
-  return $.ajax({
+  return axios({
     method: "POST",
     url: 'api/messages',
     data: { message }
@@ -60,7 +63,7 @@ export const requestMessageCreation = message => {
 };
 
 export const requestGroupCreation = group => {
-  return $.ajax({
+  return axios({
     method: "POST",
     url: 'api/groups',
     data: { group }
@@ -68,14 +71,14 @@ export const requestGroupCreation = group => {
 };
 
 export const getUsers = () => (
-  $.ajax({
+  axios({
     method: "GET",
     url: "api/users"
   })
 );
 
 export const requestDirectMessageCreation = group => (
-  $.ajax({
+  axios({
     method: "POST",
     url: "api/groups",
     data: { group }
